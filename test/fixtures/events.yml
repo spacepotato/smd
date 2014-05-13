@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  location: MyString
+  event_date: 2014-05-13
+  start_time: 2014-05-13 15:38:11
+
+two:
+  name: MyString
+  location: MyString
+  event_date: 2014-05-13
+  start_time: 2014-05-13 15:38:11
