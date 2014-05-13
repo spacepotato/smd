@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>ClubBiz</title>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -7,22 +8,33 @@
 	<%= csrf_meta_tags %>
 </head>
 
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav">
-			<li class="active"><%= link_to "ClubBiz", clubs_path, class: 'navbar-brand' %></li>
-			<li class="active"><%= link_to "Events", events_path, class: 'navbar-brand' %></li>
-			<li class="active"><%= link_to "Messages", messages_path, class: 'navbar-brand' %></li>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Club Biz</a>
+    </div> <!-- end div class="navbar-header" -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Clubs", clubs_path, class: 'navbar-brand' %></li>
+        <li><%= link_to "Events", events_path, class: 'navbar-brand' %></li>
+        <li><%= link_to "Messages", messages_path, class: 'navbar-brand' %></li>
+      </ul>
+    </div> <!-- end div class="collapse navbar-collapse" -->
+  </div> <!-- end div class="container" -->
+</div> <!-- end div class="navbar navbar-default navbar-fixed-top" -->
 
-		</ul>
-	</div>
-	
-	<div>
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
-	</div>
-	<div>
-		<%= yield %>
-	</div>
+<body>
+
+
+<div>
+	<%= yield %>
+</div>
 
 
 

@@ -7,4 +7,9 @@ def my_button_to name, options = {}, html_options = {} # or some variation
   end
 end
 
+def include_javascript (file)
+    s = " <script type=\"text/javascript\">" + render(:file => file) + "</script>"
+    content_for(:head, raw(s))
+end
+
 end
