@@ -23,6 +23,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+#To allow it to work on windows
+gem 'tzinfo-data'
+gem 'tzinfo'
+
 #Devise for user login
 gem 'devise'
 

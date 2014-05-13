@@ -1,29 +1,43 @@
-<h1>Listing clubs</h1>
+<!DOCTYPE html> 
+<html>  
+<head>  
+ <title>Club List</title> 
+ <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>  
+ <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
+ <%= csrf_meta_tags %>  
+</head> 
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Weblink</th>
-      <th>Registrationnumber</th>
+      <th>Registration Number</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @clubs.each do |club| %>
-      <tr>
-        <td><%= club.name %></td>
-        <td><%= club.webLink %></td>
-        <td><%= club.registrationNumber %></td>
-        <td><%= link_to 'Show', club %></td>
-        <td><%= link_to 'Edit', edit_club_path(club) %></td>
-        <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= club.name %></td>
+      <td><%= club.webLink %></td>
+      <td><%= club.registrationNumber %></td>
+      <td><%= link_to 'Show', club %></td>
+      <td></td>
+      <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+
+    <button>
+      <%= link_to 'Show', club %>
+    <button>
+
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Club', new_club_path %>
+
+
+

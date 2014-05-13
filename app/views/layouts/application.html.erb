@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ClubBiz</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>ClubBiz</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="navbar navbar-inverse" role="navigation">	
+		<div class="navbar-header">	
+			<div class="container">	
+				<%= link_to "ClubBiz", clubs_path, class: 'navbar-brand' %>	
+			</div>	
+		</div>	
+	</div>
+	
 	<div>
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
 	</div>
+	<div>
+		<%= yield %>
+	</div>
 
-<%= yield %>
 
 </body>
+
 </html>
+
