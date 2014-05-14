@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @user = current_user
+    @messages = @user.messages
   end
 
   # GET /messages/1
@@ -26,9 +27,13 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
+    @message.set_user_id(4)
+
+    index
+
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to :back, notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
