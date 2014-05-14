@@ -27,10 +27,6 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
-    @message.set_user_id(4)
-
-    index
-
     respond_to do |format|
       if @message.save
         format.html { redirect_to :back, notice: 'Message was successfully created.' }
@@ -74,6 +70,7 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:sender, :reciever, :body)
+      params.require(:message).permit(:user_id, :body, :sender_id)
     end
-end
+
+  end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514073245) do
+ActiveRecord::Schema.define(version: 20140514081715) do
 
   create_table "clubs", force: true do |t|
     t.string   "name"
@@ -30,8 +30,13 @@ ActiveRecord::Schema.define(version: 20140514073245) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "messages" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "messages", force: true do |t|
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "sender_id"
+  end
 
 # Could not dump table "users" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
