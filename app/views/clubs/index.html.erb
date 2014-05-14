@@ -1,11 +1,3 @@
-<!DOCTYPE html> 
-<html>  
-<head>  
- <title>Club List</title> 
- <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>  
- <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
- <%= csrf_meta_tags %>  
-</head> 
 
 <table>
   <thead>
@@ -27,10 +19,6 @@
       <td></td>
       <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
-
-    <button>
-      <%= link_to 'Show', club %>
-    <button>
 
     <% end %>
   </tbody>
