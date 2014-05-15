@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514081715) do
+ActiveRecord::Schema.define(version: 20140515001723) do
 
   create_table "clubs", force: true do |t|
     t.string   "name"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20140514081715) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "sender_id"
+    t.string   "sender"
+    t.string   "recipient"
   end
 
 # Could not dump table "users" because of following NoMethodError

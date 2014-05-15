@@ -26,6 +26,8 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
+    @user = User.find_by username: @message.recipient
+    @message.user_id = @user.id
 
     respond_to do |format|
       if @message.save
@@ -70,7 +72,7 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:user_id, :body, :sender_id)
+      params.require(:message).permit(:user_id, :body, :sender_id, :sender, :recipient)
     end
 
   end
