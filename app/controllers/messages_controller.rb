@@ -4,8 +4,8 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @user = current_user
-    @messages = @user.messages
+    @messages_received = current_user.messages
+    @messages_sent = Message.find_by sender: current_user.username
   end
 
   # GET /messages/1
