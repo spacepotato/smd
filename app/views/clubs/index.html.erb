@@ -1,5 +1,5 @@
 
-<h1><em>Clubs</em></h1>
+<h1>Clubs</h1>
 
 <table border="4" cellpadding="10">
   <thead>
@@ -18,7 +18,7 @@
       <td><%= club.webLink %></td>
       <td><%= club.registrationNumber %></td>
       <td><%= link_to 'Show', club %></td>
-      <td></td>
+      <td><%= link_to 'Edit', club %></td>
       <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
 
