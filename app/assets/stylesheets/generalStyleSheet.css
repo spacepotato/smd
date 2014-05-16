@@ -1,0 +1,18 @@
+body{
+	background-color: #333;
+}
+
+h1{
+	color:white;
+	text-align: center;
+	font-style:italic;
+}
+
+td,th{
+	color:white;
+	text-align: center;
+}
+
+p,div{
+	color:white;
+}
