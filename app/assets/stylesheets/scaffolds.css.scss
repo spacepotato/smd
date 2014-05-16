@@ -25,20 +25,20 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #68217a;
   &:visited {
-    color: #666;
+    color: #68217a;
   }
   &:hover {
     color: #fff;
-    background-color: #000;
+    background-color: #68217a;
   }
 }
 
 div {
   &.field, &.actions {
     margin-bottom: 10px;
-    color:white;
+    color:#68217a;
   }
 }
 
