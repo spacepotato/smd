@@ -28,4 +28,6 @@
 
 <br>
 
-<%= link_to 'New Message', new_message_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Message', new_message_path %>
+<% end %>
