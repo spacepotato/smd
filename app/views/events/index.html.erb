@@ -1,4 +1,4 @@
-<h1>Listing events</h1>
+<h1>Events</h1>
 
 <table border="4" cellpadding="10">
   <thead>
@@ -17,7 +17,14 @@
         <td><%= link_to event.name, event %></td>
         <td><%= event.location %></td>
         <td><%= event.event_date %></td>
-        <td><%= event.start_time %></td>
+        <td>
+          <% if event.start_time.hour < 10 %>
+            <%="0#{event.start_time.hour}:#{event.start_time.min}" %>
+          
+          <% else %>
+            <%="#{event.start_time.hour}:#{event.start_time.min}" %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

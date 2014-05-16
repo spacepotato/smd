@@ -21,7 +21,18 @@
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div>
+    <br />
+    <p><b> User Type </b></p>
+    <select name="user_type">
+      <option value="user">User</option>
+      <option value="club_admin">Club Admin</option>
+    </select>
+  </div>
+
+  <div>
+    <br />
+    <%= f.submit "Sign up" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
