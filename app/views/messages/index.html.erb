@@ -2,14 +2,6 @@
 <h1>Messages</h1>
 
 <table border="4" cellpadding="10">
-  <thead>
-    <tr>
-      <th>Sender</th>
-      <th>Reciever</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
 <tbody>
   <% @messages_received.each do |message| %>
@@ -27,6 +19,28 @@
   </div>
   <% end %>
 </tbody>
+
+<h1> Sent Messages</h1>
+
+<table border="4" cellpadding="10">
+
+<tbody>
+  <% @messages_sent.each do |message| %>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= message.recipient %> : <%= message.body %>
+      
+
+      <div class="pull-right">
+        <%= link_to 'Show', message %>
+        <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</tbody>
+
 
 <br>
   <%= link_to 'New Message', new_message_path%>

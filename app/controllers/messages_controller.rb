@@ -5,7 +5,13 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages_received = current_user.messages
-    @messages_sent = Message.find_by sender: current_user.username
+    @messages_sent = Array.new
+
+    Message.all.each do |message|
+        if message.sender == current_user.username
+          @messages_sent.push(message)
+        end
+    end
   end
 
   # GET /messages/1
