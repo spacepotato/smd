@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140516083905) do
 
   create_table "club_admins", force: true do |t|
@@ -30,6 +31,9 @@ ActiveRecord::Schema.define(version: 20140516083905) do
 
   add_index "club_admins", ["email"], name: "index_club_admins_on_email", unique: true
   add_index "club_admins", ["reset_password_token"], name: "index_club_admins_on_reset_password_token", unique: true
+=======
+ActiveRecord::Schema.define(version: 20140515001723) do
+>>>>>>> James
 
   create_table "clubs", force: true do |t|
     t.string   "name"
@@ -49,8 +53,15 @@ ActiveRecord::Schema.define(version: 20140516083905) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "messages" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "messages", force: true do |t|
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "sender_id"
+    t.string   "sender"
+    t.string   "recipient"
+  end
 
 # Could not dump table "users" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
