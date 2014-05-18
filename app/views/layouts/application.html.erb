@@ -16,6 +16,10 @@
   <nav class="navbar navbar-default navbar-static-top navbar-inverse" role = "navigation">
     <div class="container-fluid" id="navbar">
       
+      <div class="nav navbar-nav">
+          <li><%= link_to "Club-Biz", :controller => 'home', :action => 'show'%></li>
+      </div>
+
       <div class="navbar-header" >
 
 
@@ -25,32 +29,35 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand">Club Biz</a>
-      
+       
+
+      </div> <!-- end div class="navbar-header" -->
+         
+    
+
+
+      <div class="collapse navbar-collapse">
+
         <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-        
       </form>
-      </div> <!-- end div class="navbar-header" -->
-         
 
-      <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to "Clubs", clubs_path, class: 'navbar-brand' %></li>
-          <li><%= link_to "Events", events_path, class: 'navbar-brand' %></li>
+          <li><%= link_to "Clubs", clubs_path %></li>
+          <li><%= link_to "Events", events_path %></li>
           <% if user_signed_in? %> 
-          <li><%= link_to "Messages", messages_path, class: 'navbar-brand' %></li>
+          <li><%= link_to "Messages", messages_path%></li>
           <% end %>
          </ul> 
          <ul class="nav navbar-nav pull-right">
           <!-- Devise login/logout -->
           <% if user_signed_in? %> 
-          <li><%= link_to "Log Out", destroy_user_session_path, :method => 'delete', class: 'navbar-brand' %></li> 
+          <li><%= link_to "Log Out", destroy_user_session_path, :method => 'delete'%></li> 
           <% else %> 
-          <li><%= link_to "Register", new_user_registration_path, class: 'navbar-brand' %></li> 
-          <li><%= link_to "Log in", new_user_session_path, class: 'navbar-brand' %></li>  
+          <li><%= link_to "Register", new_user_registration_path %></li> 
+          <li><%= link_to "Log in", new_user_session_path%></li>  
           <% end %> 
 
 
