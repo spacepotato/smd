@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  get 'home/show'
+
   devise_for :club_admins
   devise_for :views
   resources :messages
