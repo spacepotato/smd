@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :club_admins
   devise_for :views
   resources :messages
 
