@@ -17,3 +17,6 @@
 
 //Adding in Bootstrap
 //= require bootstrap
+
+$(".alert-message").alert()
+$(".alert-message").alert('close')

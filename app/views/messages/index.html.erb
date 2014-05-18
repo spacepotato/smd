@@ -1,48 +1,52 @@
 <body>
-<h1>Messages</h1>
 
-<table border="4" cellpadding="10">
-
-<tbody>
-  <% @messages_received.each do |message| %>
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <%= message.sender %> : <%= message.body %>
-      
-
-      <div class="pull-right">
-        <%= link_to 'Show', message %>
-        <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</tbody>
-
-<h1> Sent Messages</h1>
-
-<table border="4" cellpadding="10">
-
-<tbody>
-  <% @messages_sent.each do |message| %>
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <%= message.recipient %> : <%= message.body %>
-      
-
-      <div class="pull-right">
-        <%= link_to 'Show', message %>
-        <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</tbody>
-
-
-<br>
   <%= link_to 'New Message', new_message_path%>
-</table>
-</body>
+
+  
+  <h1>Messages</h1>
+
+  <table border="4" cellpadding="10">
+
+    <tbody>
+      <% @messages_received.each do |message| %>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= message.sender %> : <%= message.body %>
+          
+
+          <div class="pull-right">
+            <%= link_to 'Show', message %>
+            <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </tbody>
+
+    <h1> Sent Messages</h1>
+
+    <table border="4" cellpadding="10">
+
+      <tbody>
+        <% @messages_sent.each do |message| %>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= message.recipient %> : <%= message.body %>
+            
+
+            <div class="pull-right">
+              <%= link_to 'Show', message %>
+              <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </tbody>
+
+
+      <br>
+
+    </table>
+  </body>

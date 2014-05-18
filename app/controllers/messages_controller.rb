@@ -8,9 +8,9 @@ class MessagesController < ApplicationController
     @messages_sent = Array.new
 
     Message.all.each do |message|
-        if message.sender == current_user.username
-          @messages_sent.push(message)
-        end
+      if message.sender == current_user.username
+        @messages_sent.push(message)
+      end
     end
   end
 
@@ -33,15 +33,24 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @user = User.find_by username: @message.recipient
-    @message.user_id = @user.id
+
 
     respond_to do |format|
-      if @message.save
-        format.html { redirect_to :back, notice: 'Message was successfully created.' }
-        format.json { render :show, status: :created, location: @message }
+      if @user.blank?
+        flash[:error] = "Error"
+        format.html { redirect_to :back}
+        format.json { render :show, status: :created, location: @message}
       else
-        format.html { render :new }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        @message.user_id = @user.id
+
+        if @message.save
+          flash[:success] = "Your message has been created"
+          format.html { redirect_to :back}
+          format.json { render :show, status: :created, location: @message}
+        else
+          format.html { render :new }
+          format.json { render json: @message.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
