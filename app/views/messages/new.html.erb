@@ -6,15 +6,3 @@
 
 <%= link_to 'Back', messages_path %>
 
-<% flash.each do |name, msg| %>
-
-<% if msg[0..4] == "Error" %>
-	<div class="alert alert-danger fade in">
-		The user doesn't exist
-<% else %>
-	<div class="alert alert-success fade in">
-		Your message has been created
-<% end %>
-	<a class="close" data-dismiss="alert" href="#">&times;</a>
-	</div>
-<% end %>
