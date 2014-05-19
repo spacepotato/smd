@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
     respond_to do |format|
       #If we are trying to send a message to a user that doesn't exist we want to let the User know that this is just not on
       if @user.blank?
-        flash[:error] = "Error"
+        flash[:error] = "The user does not exist"
         format.html { redirect_to :back}
         format.json { render :show, status: :created, location: @message}
       else
