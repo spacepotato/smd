@@ -78,8 +78,25 @@
    <%= yield %>
 
 
-   <p class="notice"><%= notice %> </p>
-   <p class="alert"><%= alert %> </p>
+  <div class="alert alert-notice fade in">
+    <%= notice %> 
+  </div>
+  <div class="alert alert-danger fade in">
+    <%= alert %> 
+  </div>
+
+  <% flash.each do |name, msg| %>
+
+  <% if msg[0..4] == "Error" %>
+  <div class="alert alert-danger fade in">
+    <% else %>
+    <div class="alert alert-success fade in">
+      <% end %>
+      <%= msg %>
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      
+    </div>
+    <% end %>
  </div>
 
 
