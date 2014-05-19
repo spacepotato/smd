@@ -17,7 +17,7 @@
     <div class="container-fluid" id="navbar">
       
       <div class="nav navbar-nav">
-          <li><%= link_to "Club-Biz", :controller => '/home', :action => 'show'%></li>
+        <li><%= link_to "Club-Biz", :controller => '/home', :action => 'show'%></li>
       </div>
 
       <div class="navbar-header" >
@@ -30,19 +30,19 @@
           <span class="icon-bar"></span>
         </button>
 
-       
+        
       </div> <!-- end div class="navbar-header" -->
-         
-    
+      
+      
 
 
       <div class="collapse navbar-collapse">
 
         <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-      </form>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+        </form>
 
         <ul class="nav navbar-nav">
           <li><%= link_to "Clubs", clubs_path %></li>
@@ -77,33 +77,27 @@
   <div class="container">
    <%= yield %>
 
+   <% flash.each do |name, msg| %>
 
-  <div class="alert alert-notice fade in">
-    <%= notice %> 
-  </div>
-  <div class="alert alert-danger fade in">
-    <%= alert %> 
-  </div>
-
-  <% flash.each do |name, msg| %>
-
-  <% if msg[0..4] == "Error" %>
-  <div class="alert alert-danger fade in">
-    <% else %>
+   <% if flash[:error] %>
+   <div class="alert alert-danger fade in">
+    <% elsif flash[:success] %>
     <div class="alert alert-success fade in">
+      <% else %>
+      <div class="alert alert-warning fade in">
+        <% end %>
+        <%= msg %>
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+
+      </div>
       <% end %>
-      <%= msg %>
-      <a class="close" data-dismiss="alert" href="#">&times;</a>
-      
     </div>
-    <% end %>
- </div>
 
 
 
-</body>
+  </body>
 
-</html>
+  </html>
 
 
 
