@@ -2,51 +2,56 @@
 
   <%= link_to 'New Message', new_message_path%>
 
-  
-  <h1>Messages</h1>
+  <div style ="padding: 0 15px;">
+    <div class = "row">
+      <div class  = "col-md-6">
+        <h1>Messages</h1>
 
-  <table border="4" cellpadding="10">
+        <table border="4" cellpadding="10">
 
-    <tbody>
-      <% @messages_received.each do |message| %>
+          <tbody>
+            <% @messages_received.each do |message| %>
 
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <%= message.sender %> : <%= message.body %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <%= message.sender %> : <%= message.body %>
           
 
-          <div class="pull-right">
-            <%= link_to 'Show', message %>
-            <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
-        </div>
-      </div>
-      <% end %>
-    </tbody>
-
-    <h1> Sent Messages</h1>
-
-    <table border="4" cellpadding="10">
-
-      <tbody>
-        <% @messages_sent.each do |message| %>
-
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <%= message.recipient %> : <%= message.body %>
-            
-
-            <div class="pull-right">
-              <%= link_to 'Show', message %>
-              <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <div class="pull-right">
+                  <%= link_to 'Show', message %>
+                  <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <% end %>
-      </tbody>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class  = "col-md-6">
+        <h1> Sent Messages</h1>
 
+        <table border="4" cellpadding="10">
 
-      <br>
+          <tbody>
+            <% @messages_sent.each do |message| %>
 
-    </table>
-  </body>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <%= message.recipient %> : <%= message.body %>
+                
+
+                <div class="pull-right">
+                  <%= link_to 'Show', message %>
+                  <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </tbody>
+      </div>
+    </div>
+  </div>
+</table>
+<br>
+
+</body>
