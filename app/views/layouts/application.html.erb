@@ -15,7 +15,7 @@
 
   <nav class="navbar navbar-default navbar-static-top navbar-inverse" role = "navigation">
     <div class="container-fluid" id="navbar">
-      
+
       <div class="nav navbar-nav">
         <li><%= link_to "Club-Biz", :controller => '/home', :action => 'show'%></li>
       </div>
@@ -30,10 +30,10 @@
           <span class="icon-bar"></span>
         </button>
 
-        
+
       </div> <!-- end div class="navbar-header" -->
-      
-      
+
+
 
 
       <div class="collapse navbar-collapse">
@@ -77,27 +77,16 @@
   <div class="container">
    <%= yield %>
 
-   <% flash.each do |name, msg| %>
+   <%= render 'layouts/messages' %>
 
-   <% if flash[:error] %>
-   <div class="alert alert-danger fade in">
-    <% elsif flash[:success] %>
-    <div class="alert alert-success fade in">
-      <% else %>
-      <div class="alert alert-warning fade in">
-        <% end %>
-        <%= msg %>
-        <a class="close" data-dismiss="alert" href="#">&times;</a>
 
-      </div>
-      <% end %>
-    </div>
+ </div>
 
 
 
-  </body>
+</body>
 
-  </html>
+</html>
 
 
 

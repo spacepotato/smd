@@ -1,0 +1,14 @@
+   <% flash.each do |name, msg| %>
+
+   <% if flash[:error] %>
+   <div class="alert alert-danger fade in">
+    <% elsif flash[:success] %>
+    <div class="alert alert-success fade in">
+      <% else %>
+      <div class="alert alert-warning fade in">
+        <% end %>
+        <%= msg %>
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+
+      </div>
+      <% end %>
