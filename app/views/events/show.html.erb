@@ -38,6 +38,7 @@
 </p>
 <% if @event.image? %>
 	<%= image_tag @event.image.url %>
+	
 	<br />
 	<%= link_to @event.image.url, @event.image.url%>
 <% end %>
