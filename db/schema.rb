@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520055206) do
+ActiveRecord::Schema.define(version: 20140520073318) do
+
+  create_table "club_admins", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "club_admins", ["email"], name: "index_club_admins_on_email", unique: true
+  add_index "club_admins", ["reset_password_token"], name: "index_club_admins_on_reset_password_token", unique: true
 
   create_table "clubs", force: true do |t|
     t.string   "name"
@@ -48,6 +66,9 @@ ActiveRecord::Schema.define(version: 20140520055206) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "ticket_price"
+    t.integer  "num_of_tickets"
+    t.string   "ticket_info"
   end
 
 # Could not dump table "messages" because of following NoMethodError
