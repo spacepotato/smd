@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   devise_for :clubs
   get 'home/show'
 
-  devise_for :views
   resources :messages
 
   resources :events
