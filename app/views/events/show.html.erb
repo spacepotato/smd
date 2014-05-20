@@ -20,6 +20,16 @@
   <strong>Start time:</strong>
   <%= "#{@event.start_time.hour}:#{@event.start_time.min}" %>
 </p>
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<% if @event.image? %>
+	<%= image_tag @event.image.url %>
+	<br />
+	<%= link_to @event.image.url, @event.image.url%>
+<% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
