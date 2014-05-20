@@ -15,6 +15,10 @@
   <strong>Registrationnumber:</strong>
   <%= @club.registrationNumber %>
 </p>
+<p>
+  <strong>Description:</strong>
+  <%= @club.description %>
+</p>
 
 <%= link_to 'Edit', edit_club_path(@club) %> |
 <%= link_to 'Back', clubs_path %>
