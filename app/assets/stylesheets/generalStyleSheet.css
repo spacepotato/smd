@@ -18,3 +18,15 @@ p{
 #navbar{
 	background-color: #68217a;
 }
+
+form.custom {
+    width:400px;
+    margin-right:auto;
+    margin-left:auto;
+    background:#FCFCFC;
+    padding:30px 30px 20px 30px;
+    box-shadow:rgb(191,191,191) 0 3px 10px -1px;
+    color:#666666;
+    border-radius:5px;
+    font-size:14px;
+}
