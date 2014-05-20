@@ -24,7 +24,18 @@
   <strong>Description:</strong>
   <%= @event.description %>
 </p>
-
+<p>
+  <strong>Ticket information:</strong>
+  <%= @event.ticket_info %>
+</p>
+<p>
+  <strong>Tickets available:</strong>
+  <%= @event.num_of_tickets %>
+</p>
+<p>
+  <strong>Ticket price:</strong>
+  <%= @event.ticket_price %>
+</p>
 <% if @event.image? %>
 	<%= image_tag @event.image.url %>
 	<br />
