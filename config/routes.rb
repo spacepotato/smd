@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
 
+  devise_for :clubs
   get 'home/show'
 
-  devise_for :club_admins
   devise_for :views
   resources :messages
 
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :clubs
 
   get 'home/show' =>'home#show',:as=>:show
-
+  get 'home' => 'home#show'
   devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
