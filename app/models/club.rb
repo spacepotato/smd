@@ -9,7 +9,7 @@ class Club < ActiveRecord::Base
 
   		Club.all.each do |temp_club|
   			if temp_club.name.include? search || temp_club.name == search
-  				clubs.push(temp_clubs)
+  				clubs.push(temp_club)
   			end
   		end
 
