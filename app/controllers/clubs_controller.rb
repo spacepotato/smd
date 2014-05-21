@@ -11,6 +11,7 @@ class ClubsController < ApplicationController
   # GET /clubs/1
   # GET /clubs/1.json
   def show
+    
   end
 
   # GET /clubs/new
