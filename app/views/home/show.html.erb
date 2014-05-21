@@ -1,27 +1,19 @@
 
 <h1 class="custom">Club Biz</h1>
+<br>
+<br>
 
 <% @events.each do |temp_event| %>
 <% if temp_event.image?%>
 	<%= image_tag temp_event.image.url(:medium) %>
-  <br>
-	<%= link_to 'Link to Picture', temp_event.image.url%>
-  <br>
 <% end %>
 
 <% if temp_event.image2? %>
   <%= image_tag temp_event.image2.url(:medium) %>
-  <br>
-  <%= link_to 'Link to Picture', temp_event.image2.url%>
-  <br>
 <% end %>
 
 <% if temp_event.image3? %>
   <%= image_tag temp_event.image3.url(:medium) %>
-  <br>
-  <%= link_to 'Link to Picture', temp_event.image3.url%>
-  <br>
-  <br>
 <% end %>
 
 <%end%>
