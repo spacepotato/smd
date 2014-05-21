@@ -18,6 +18,14 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @belonging_clubs = Array.new
+
+    ClubAdmin.all.each do |temp_admin|
+      if temp_admin.user_id == current_user.id
+        @belonging_clubs.push(Club.find(temp_admin.club_id))
+      end
+    end
+
   end
 
   # GET /events/1/edit
@@ -90,6 +98,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :location, :event_date, :start_time, :description, :ticket_info, :num_of_tickets, :ticket_price, :image, :image2, :image3, :belonging_club)
+      params.require(:event).permit(:name, :location, :event_date, :start_time, :description, :ticket_info, :num_of_tickets, :ticket_price, :image, :image2, :image3)
     end
 end
