@@ -43,11 +43,7 @@
 
 <br>
 
-<<<<<<< HEAD
-<% if user_signed_in? %>
-  <%= link_to 'Create New Event', new_event_path %>
-=======
 <% if user_signed_in? && @is_club_admin %>
   <%= link_to 'New Event', new_event_path %>
->>>>>>> MergingBondage
+
 <% end %>
