@@ -17,7 +17,7 @@ class SearchController < ApplicationController
 
 	def search
 		@clubs = search_clubs(params[:search])
-		@events = search_clubs(params[:search])
+		@events = search_events(params[:search])
 
 	end
 
