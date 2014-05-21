@@ -1,7 +1,8 @@
 class Club < ActiveRecord::Base
   
-  has_many :events
-  belongs_to :club_admin
+  has_and_belongs_to_many :events
+  has_many :club_admins
+  has_many :users, :through => :club_admins
 
   def self.search(search)
   	if search
