@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def show
 
-  	@events_retrieved = Event.all
+  	@events_retrieved = Event.all.shuffle
   	@events = Array.new
   	@counter = 0
 

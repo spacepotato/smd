@@ -3,18 +3,30 @@
 <br>
 <br>
 
+<% @counter = 0 %>
+<div class="home">
 <% @events.each do |temp_event| %>
-<% if temp_event.image?%>
-	<%= image_tag temp_event.image.url(:medium) %>
+
+<% if temp_event.image? && @counter < 3%>
+	<%= link_to_image(temp_event.image.url(:medium), temp_event) %>
+	<% @counter += 1 %>
+	&nbsp;&nbsp;
 <% end %>
 
-<% if temp_event.image2? %>
-  <%= image_tag temp_event.image2.url(:medium) %>
+<% if temp_event.image2? && @counter < 3%>
+  <%= link_to_image(temp_event.image2.url(:medium), temp_event) %>
+  <% @counter += 1 %>
+ 
+  &nbsp;&nbsp;
 <% end %>
 
-<% if temp_event.image3? %>
-  <%= image_tag temp_event.image3.url(:medium) %>
+<% if temp_event.image3? && @counter < 3 %>
+  <%= link_to_image(temp_event.image3.url(:medium), temp_event) %>
+  <% @counter += 1 %>
+  
+  &nbsp;&nbsp;
 <% end %>
 
 <%end%>
+</div>
 

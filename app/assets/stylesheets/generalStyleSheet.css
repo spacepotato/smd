@@ -66,3 +66,9 @@ th, td {
     padding-top:10px;
     padding-bottom:10px;
 }
+
+div.home{
+    text-align:center;
+    margin-right:auto;
+    margin-left:auto;
+}
