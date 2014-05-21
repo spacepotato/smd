@@ -1,8 +1,6 @@
 class SearchController < ApplicationController
 
 	def search_clubs(search_params)
-		#Searching by name
-		Club.search(search_params)
 
 		@clubs= Array.new
 
