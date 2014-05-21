@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   def show
   end
 
-  # GET /messages/new
+  # GET /messages/new 
   def new
     @message = Message.new
   end
