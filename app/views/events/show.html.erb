@@ -58,5 +58,7 @@
   <br>
 <% end %>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<% if user_signed_in? && @is_club_admin %>
+<%= link_to 'Edit', edit_event_path(@event) %> 
+<% end %>
 <%= link_to 'Back', events_path %>

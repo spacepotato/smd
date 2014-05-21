@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20140521040405) do
 
+  create_table "club_admins", force: true do |t|
+    t.integer  "club_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "position"
+  end
+
   create_table "clubs", force: true do |t|
     t.string   "name"
     t.string   "webLink"
