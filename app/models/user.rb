@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :messages
-
+  has_many :club_admins
+  has_many :clubs, :through => :club_admins
 
 end
 

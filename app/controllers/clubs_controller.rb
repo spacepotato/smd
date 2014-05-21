@@ -20,12 +20,23 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1/edit
   def edit
+    if current_user.clubs.include? @club.id
+    else
+      flash[:error] = "You do not have permission to edit this club"
+      redirect_to club_path
+    end
   end
 
   # POST /clubs
   # POST /clubs.json
   def create
     @club = Club.new(club_params)
+    @club_admin = ClubAdmin.new({:user => current_user,:club => @club, :position => "El Presidente"})
+    # @club_admin.club_id = @club.id
+    # @club_admin.user_id = current_user.id
+    # @club_admin.position = "El Presidente"
+    @club_admin.save
+
 
     respond_to do |format|
       if @club.save
