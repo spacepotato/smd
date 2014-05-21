@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140520073318) do
     t.string   "name"
     t.string   "webLink"
     t.integer  "registrationNumber"
+    t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
