@@ -1,11 +1,13 @@
 class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index] 
+  helper_method :is_club_current_admin?
 
   # GET /clubs
   # GET /clubs.json
   def index
     @clubs = Club.all
+    @is_club_admin = is_club_admin?
   end
 
   # GET /clubs/1
@@ -20,7 +22,7 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1/edit
   def edit
-    if current_user.clubs.include? @club.id
+    if is_club_current_admin?(@club.id)
     else
       flash[:error] = "You do not have permission to edit this club"
       redirect_to club_path
@@ -71,6 +73,24 @@ class ClubsController < ApplicationController
       format.html { redirect_to clubs_url, notice: 'Club was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def is_club_admin?
+    ClubAdmin.all.each do |temp_entry|
+          if temp_entry.user_id == current_user.id
+              return true
+          end
+        end
+    return false
+  end
+
+    def is_club_current_admin?(club_id)
+    ClubAdmin.all.each do |temp_entry|
+          if temp_entry.user_id == current_user.id && temp_entry.club_id == club_id
+              return true
+          end
+        end
+    return false
   end
 
   private

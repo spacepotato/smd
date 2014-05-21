@@ -1,14 +1,9 @@
 class Club < ActiveRecord::Base
-<<<<<<< HEAD
 
-  has_many :events
-  belongs_to :club_admin
-=======
   
   has_and_belongs_to_many :events
   has_many :club_admins
   has_many :users, :through => :club_admins
->>>>>>> club-admin-development
 
   def self.search_name(search)
   	if search

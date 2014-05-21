@@ -19,7 +19,7 @@
       <td><%= club.registrationNumber %></td>
       <td><%= link_to 'Show', club %></td>
 
-      <% if user_signed_in? %>
+      <% if user_signed_in? && is_club_current_admin?(club.id) %>
         <td><%= link_to 'Edit', club %></td>
         <td><%= link_to 'Remove', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
@@ -31,7 +31,7 @@
 
 <br>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @is_club_admin %>
   <%= link_to "New Club" , new_club_path %>
 <% end %>
 

@@ -32,7 +32,7 @@
         <td><%= event.num_of_tickets %></td>
         <td><%= event.ticket_price %></td>
         <td><%= link_to 'Show', event %></td>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && @is_club_admin%>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Remove', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -43,6 +43,6 @@
 
 <br>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @is_club_admin %>
   <%= link_to 'New Event', new_event_path %>
 <% end %>

@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140521040405) do
-=======
-ActiveRecord::Schema.define(version: 20140521033508) do
 
   create_table "club_admins", force: true do |t|
     t.integer  "club_id"
@@ -23,7 +20,6 @@ ActiveRecord::Schema.define(version: 20140521033508) do
     t.datetime "updated_at"
     t.string   "position"
   end
->>>>>>> club-admin-development
 
   create_table "clubs", force: true do |t|
     t.string   "name"
@@ -65,5 +61,23 @@ ActiveRecord::Schema.define(version: 20140521033508) do
 
 # Could not dump table "users" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
+
+  create_table "views", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "views", ["email"], name: "index_views_on_email", unique: true
+  add_index "views", ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true
 
 end

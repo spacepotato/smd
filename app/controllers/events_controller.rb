@@ -1,11 +1,13 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index] 
+  helper_method :is_club_current_admin?
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
+    @is_club_admin = is_club_admin?
   end
 
   # GET /events/1
@@ -60,6 +62,24 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def is_club_admin?
+    ClubAdmin.all.each do |temp_entry|
+      if temp_entry.user_id == current_user.id
+        return true
+      end
+    end
+    return false
+  end
+
+  def is_club_current_admin?(club_id)
+    ClubAdmin.all.each do |temp_entry|
+          if temp_entry.user_id == current_user.id && temp_entry.club_id == club_id
+              return true
+          end
+        end
+    return false
   end
 
   private
