@@ -18,8 +18,11 @@
       <td><%= club.webLink %></td>
       <td><%= club.registrationNumber %></td>
       <td><%= link_to 'Show', club %></td>
-      <td><%= link_to 'Edit', club %></td>
-      <td><%= link_to 'Remove', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      <% if user_signed_in? %>
+        <td><%= link_to 'Edit', club %></td>
+        <td><%= link_to 'Remove', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
 
     <% end %>
