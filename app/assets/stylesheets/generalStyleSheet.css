@@ -3,6 +3,7 @@ h1, h2{
 	color:#68217a;
 	text-align: center;
 	font-style:bold;
+	font-size: 50px;
 }
 
 td,th{
@@ -29,4 +30,28 @@ form.custom {
     color:#666666;
     border-radius:5px;
     font-size:14px;
+}
+
+table, td, th {
+    border:1px solid #68228B;
+    background-color:white;
+}
+
+table {
+    text-align:center;
+    width:100%;
+    border-collapse:collapse;
+    box-shadow: 20px 20px 30px #aaaaaa;
+    border-style: ridge;
+}
+
+th {
+    font-style:bold;
+    background: #68217a;
+    color:white;
+}
+
+th, td {
+    padding-top:10px;
+    padding-bottom:10px;
 }

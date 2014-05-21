@@ -38,18 +38,25 @@
 
       <div class="collapse navbar-collapse">
 
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-        </form>
+
 
         <ul class="nav navbar-nav">
           <li><%= link_to "Clubs", clubs_path %></li>
           <li><%= link_to "Events", events_path %></li>
           <% if user_signed_in? %> 
-          <li><%= link_to "Messages", messages_path%></li>
+          <li><%= link_to "Messages", messages_path%></li>          
           <% end %>
+
+          <li class="navbar-form navbar-left form-inline">
+
+            <%= form_tag search_path, :method => 'post' do %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], class: "form-control" %>
+              <%= submit_tag "Search", class: "btn btn-default" %>
+            </div>
+            <% end %>
+          </li>
+
         </ul> 
         <ul class="nav navbar-nav pull-right">
           <!-- Devise login/logout -->

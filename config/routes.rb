@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :clubs, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   get 'home/show'
 
+  post '/search', to: 'search#search', :as => :search
+
   resources :messages
 
   resources :events
