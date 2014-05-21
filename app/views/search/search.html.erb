@@ -1,0 +1,74 @@
+<% if !@clubs.blank? %>
+<h1>Clubs</h1>
+<br>
+<table border="4" cellpadding="10">
+  <thead>
+    <tr>
+      <th><b>Name</b></th>
+      <th><b>Weblink</b></th>
+      <th><b>Registration Number</b></th>
+      <th colspan="3"></th>
+  </tr>
+</thead>
+
+<tbody>
+    <% @clubs.each do |club| %>
+    <tr>
+      <td><%= link_to club.name, club %></td>
+      <td><%= club.webLink %></td>
+      <td><%= club.registrationNumber %></td>
+      <td><%= link_to 'Show', club %></td>
+      <td><%= link_to 'Edit', club %></td>
+      <td><%= link_to 'Remove', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+
+  <% end %>
+</tbody>
+</table>
+<br>
+<br>
+<% end %>
+
+<% if !@events.blank? %>
+<br>
+<table border="4" cellpadding="10">
+  <thead>
+    <tr>
+      <th><b>Name</b></th>
+      <th><b>Location</b></th>
+      <th><b>Event date</b></th>
+      <th><b>Start time</b></th>
+      <th><b>Tickets description</b></th>
+      <th><b>Tickets available</b></th>
+      <th><b>Ticket price</b></th>
+      <th colspan="3"></th>
+  </tr>
+</thead>
+
+<tbody>
+    <% @events.each do |event| %>
+    <tr>
+        <td><%= link_to event.name, event %></td>
+        <td><%= event.location %></td>
+        <td><%= event.event_date %></td>
+        <td>
+          <% if event.start_time.hour < 10 %>
+          <%="0#{event.start_time.hour}:#{event.start_time.min}" %>
+          
+          <% else %>
+          <%="#{event.start_time.hour}:#{event.start_time.min}" %>
+          <% end %>
+      </td>
+      <td><%= event.ticket_info %></td>
+      <td><%= event.num_of_tickets %></td>
+      <td><%= event.ticket_price %></td>
+      <td><%= link_to 'Show', event %></td>
+      <td><%= link_to 'Edit', edit_event_path(event) %></td>
+      <td><%= link_to 'Remove', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+<% end %>
+
+

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :clubs
   get 'home/show'
 
+  get '/search', to: 'search#search', :as => :search
+
   resources :messages
 
   resources :events
