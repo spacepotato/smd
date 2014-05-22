@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index] 
-  helper_method :is_club_current_admin?, :follow_event, :is_following?, :unfollow_event
+  helper_method :is_club_current_admin?, :follow_event, :is_following?, :unfollow_event, :is_club_admin?
 
   # GET /events
   # GET /events.json

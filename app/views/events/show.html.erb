@@ -79,7 +79,7 @@
 
  <%= f.hidden_field :event_id, :value => @event.id %>
  <%= f.hidden_field :username, :value => current_user.username %>
- <%= f.hidden_field :is_announcement, :value => @is_club_admin? %>
+ <%= f.hidden_field :is_announcement, :value => @is_club_admin %>
  
  <%= f.label :body %>
  <%= f.text_area :body %>

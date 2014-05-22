@@ -105,7 +105,7 @@ class ClubsController < ApplicationController
     received = Array.new
 
     ClubAdmin.all.each do |temp_admin|
-      if receieved.include? temp_admin.user_id
+      if received.include? temp_admin.user_id
         continue
       end
 
