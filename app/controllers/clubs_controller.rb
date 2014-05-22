@@ -19,8 +19,8 @@ class ClubsController < ApplicationController
   def show
     @club_events = Array.new
     ClubEvents.all.each do |temp_event|
-      if temp_event.club_id == params[:id].to_i
-        @club_events.push(Event.find(params[:id]))
+      if temp_event.club_id == @club.id
+        @club_events.push(temp_event)
       end
     end
   end
@@ -110,7 +110,7 @@ class ClubsController < ApplicationController
     received = Array.new
 
     ClubAdmin.all.each do |temp_admin|
-      if receieved.include? temp_admin.user_id
+      if received.include? temp_admin.user_id
         continue
       end
 
