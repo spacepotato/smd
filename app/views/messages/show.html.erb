@@ -15,5 +15,5 @@
   <%= @message.body %>
 </p>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+<%= link_to '<button>Edit</button>'.html_safe, edit_message_path(@message) %> |
+<%= link_to '<button>Back</button>'.html_safe, messages_path %>

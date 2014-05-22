@@ -6,6 +6,12 @@ h1, h2{
 	font-size: 50px;
 }
 
+h4{
+    color:#68217a;
+    font-style:bold;
+}
+
+
 h1.custom{
 
     font-size:100px; 
@@ -71,4 +77,31 @@ div.home{
     text-align:center;
     margin-right:auto;
     margin-left:auto;
+}
+
+button, input[type="button"], input[type="submit"] { 
+    color:white; 
+    font: bold 84%;
+    background-color:#68217a; 
+    border:1px solid; 
+    border-color: #696 #363 #363 #696; 
+    text-align:center;
+} 
+
+
+ input[type="submit"].comment{
+
+    float:center;
+
+}
+div.comment{
+
+    border-style: ridge;
+    margin-right:auto;
+    margin-left: 30px;
+    background-color: white;
+    width:auto;
+    height:auto;
+    color:#68217a;
+
 }

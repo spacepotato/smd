@@ -15,5 +15,5 @@
   <%= @comment.event %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to '<button>Edit</button>'.html_safe, edit_comment_path(@comment) %> |
+<%= link_to '<button>Back</button>'.html_safe, comments_path %>

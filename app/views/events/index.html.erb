@@ -44,6 +44,6 @@
 <br>
 
 <% if user_signed_in? && @is_club_admin %>
-  <%= link_to 'New Event', new_event_path %>
+  <%= link_to '<button>New Event</button>'.html_safe, new_event_path %>
 
 <% end %>

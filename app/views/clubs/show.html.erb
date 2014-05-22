@@ -19,6 +19,6 @@
 </p>
 
 <% if user_signed_in? && is_club_current_admin?(@club.id) %>
-<%= link_to 'Edit', edit_club_path(@club) %>
+<%= link_to '<button>Edit</button>'.html_safe, edit_club_path(@club) %>
 <% end %>
-<%= link_to 'Back', clubs_path %>
+<%= link_to '<button>Back</button>'.html_safe, clubs_path %>
