@@ -18,6 +18,13 @@
   <%= @club.description %>
 </p>
 
+<br>
+<br>
+<h4><strong>Club Events</strong> </h2>
+	<%= render :partial => 'club_events', :collection => @club_events %>
+   <br>
+   <br>
+
 <% if user_signed_in? && is_club_current_admin?(@club.id) %>
 <%= link_to '<button>Edit</button>'.html_safe, edit_club_path(@club) %>
 <% end %>
