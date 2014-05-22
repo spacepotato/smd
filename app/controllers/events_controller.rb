@@ -18,6 +18,14 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @comment = Comment.new
+    @followers = Array.new
+    @temp_id = params[:id]
+    EventFollows.all.each do |temp_follow|
+      if temp_follow.event_id == params[:id].to_i
+        @followers.push(User.find(params[:id]))
+      end
+    end
+
   end
 
   # GET /events/new
@@ -86,6 +94,7 @@ class EventsController < ApplicationController
     return false
   end
 
+  #TO BE IMPLEMENTED ONCE WE HAVE A JOIN BETWEEN CLUBS AND EVENTS
   def is_club_current_admin?(club_id)
     ClubAdmin.all.each do |temp_entry|
       if temp_entry.user_id == current_user.id && temp_entry.club_id == club_id
