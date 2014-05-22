@@ -51,9 +51,9 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.parent_club = Club.find(params[:parent_club]).name
 
-    @club_event = ClubEvents.new
-    @club_event.club_id = params[:parent_club]
-    @club_event.event_id = params[:id]
+    # @club_event = ClubEvents.new
+    # @club_event.club_id = params[:parent_club]
+    # @club_event.event_id = Event.where(name: @event.name).take.id
 
     respond_to do |format|
       if @event.save && @club_event.save

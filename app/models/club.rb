@@ -1,8 +1,10 @@
 class Club < ActiveRecord::Base
 
   
-  has_and_belongs_to_many :events
+  
   has_many :club_admins
+  has_many :club_events
+  has_many :events, :through => :club_events
   has_many :users, :through => :club_admins
 
   def self.search_name(search)
