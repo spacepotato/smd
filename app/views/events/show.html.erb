@@ -5,12 +5,13 @@
   </strong>
 </h1>
 <% if is_following?(@event.id) %>
-<%= link_to 'Unfollow Club', @event, method: :put %></td>
+<%= link_to '<button>Unfollow Event</button>'.html_safe, @event, method: :put %></td>
 <% else %>
-<%= link_to 'Follow Club', @event, method: :post %></td>
-
+<%= link_to '<button>Follow Event</button>'.html_safe, @event, method: :post %></td>
 <% end %>
 
+<br>
+<br>
 
 <p>
   <strong>Location:</strong>
@@ -44,28 +45,7 @@
 </p>
 <div class="home">
 <% if @event.image? %>
-<<<<<<< HEAD
-<%= image_tag @event.image.url(:medium) %>
-<br>
-<%= link_to 'Link to Picture', @event.image.url%>
-<br>
-<% end %>
 
-<% if @event.image2? %>
-<%= image_tag @event.image2.url(:medium) %>
-<br>
-<%= link_to 'Link to Picture', @event.image2.url%>
-<br>
-<% end %>
-
-<% if @event.image3? %>
-<%= image_tag @event.image3.url(:medium) %>
-<br>
-<%= link_to 'Link to Picture', @event.image3.url%>
-<br>
-<br>
-<% end %>
-=======
   <%= link_to_image(@event.image.url(:medium), @event.image.url) %>
   &nbsp;&nbsp;&nbsp;
 <% end %>
@@ -83,7 +63,7 @@
 
   <br>
   <br>
->>>>>>> b555eb6e56093fde32a17914be9f497d492fd25d
+
 
 <h4><strong> Comments</strong> </h2>
  <%= render :partial => 'comment', :collection => @event.comments %>
@@ -91,16 +71,7 @@
  <br>
 
 <%= form_for(@comment, :html => { :multipart => true, :class => "custom"}) do |f| %>
-<<<<<<< HEAD
-<%= f.hidden_field :event_id, :value => @event.id %>
-<%= f.hidden_field :username, :value => current_user.username %>
 
-<%= f.label :body %>
-<%= f.text_area :body %>
-
-<%= f.submit "Post Comment" %>
-
-=======
   <%= f.hidden_field :event_id, :value => @event.id %>
   <%= f.hidden_field :username, :value => current_user.username %>
  
@@ -110,8 +81,7 @@
     <br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <%= f.submit "Post Comment", :class =>"comment" %>
-  
->>>>>>> b555eb6e56093fde32a17914be9f497d492fd25d
+
 <% end %>
 
   <br>
