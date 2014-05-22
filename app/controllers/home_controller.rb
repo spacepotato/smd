@@ -18,9 +18,9 @@ class HomeController < ApplicationController
    end
    if user_signed_in?
     EventFollows.all.each do |temp_follow|
-      if temp_follow.user_id == current_user.user_id
+      if temp_follow.user_id == current_user.id
         temp_event = Event.find(temp_follow.event_id)
-        temp_event.comment.each do |temp_comment|
+        temp_event.comments.each do |temp_comment|
           if temp_comment.is_announcement
             @announcements.push(temp_comment.body)
           end
