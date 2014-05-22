@@ -28,5 +28,30 @@
 <% end %>
 
 <%end%>
+<% if user_signed_in? %>
+  <div style ="padding: 0 15px;">
+    <div class = "row">
+      <div class  = "col-md-6">
+        <h1>Announcements</h1>
+
+        <table border="4" cellpadding="10">
+
+          <tbody>
+            <% @announcements.each do |message| %>
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+               <%= message %>
+          
+
+                <div class="pull-right">
+                  <%= link_to '<button>Show</button>'.html_safe, message %>
+                  <%= link_to '<button>Remove</button>'.html_safe, message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </tbody>
 </div>
 
+<% end %>
