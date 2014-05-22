@@ -25,7 +25,7 @@
     <%= f.label :parent_club %><br>
     <select name="parent_club">
       <% @belonging_clubs.each do |club| %>
-      <option value="club"> <%= club.name %></option>
+      <option value='<%= club.id %>'> <%= club.name %></option>
       <%end%>
     </select>
 
