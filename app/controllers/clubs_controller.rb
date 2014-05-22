@@ -7,13 +7,15 @@ class ClubsController < ApplicationController
   # GET /clubs.json
   def index
     @clubs = Club.all
-    @is_club_admin = is_club_admin?
+    if user_signed_in?
+      @is_club_admin = is_club_admin?
+    end
   end
 
   # GET /clubs/1
   # GET /clubs/1.json
   def show
-    
+
   end
 
   # GET /clubs/new
@@ -78,19 +80,19 @@ class ClubsController < ApplicationController
 
   def is_club_admin?
     ClubAdmin.all.each do |temp_entry|
-          if temp_entry.user_id == current_user.id
-              return true
-          end
-        end
+      if temp_entry.user_id == current_user.id
+        return true
+      end
+    end
     return false
   end
 
-    def is_club_current_admin?(club_id)
+  def is_club_current_admin?(club_id)
     ClubAdmin.all.each do |temp_entry|
-          if temp_entry.user_id == current_user.id && temp_entry.club_id == club_id
-              return true
-          end
-        end
+      if temp_entry.user_id == current_user.id && temp_entry.club_id == club_id
+        return true
+      end
+    end
     return false
   end
 
@@ -104,4 +106,4 @@ class ClubsController < ApplicationController
     def club_params
       params.require(:club).permit(:name, :webLink, :registrationNumber, :description)
     end
-end
+  end
