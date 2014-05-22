@@ -16,9 +16,9 @@
         <td><%= comment.username %></td>
         <td><%= comment.body %></td>
         <td><%= comment.event %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<button>Show</button>'.html_safe, comment %></td>
+        <td><%= link_to '<button>Edit</button>'.html_safe, edit_comment_path(comment) %></td>
+        <td><%= link_to '<button>Destroy</button>'.html_safe, comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to '<button>New Comment</button>'.html_safe, new_comment_path %>

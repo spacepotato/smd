@@ -1,8 +1,10 @@
 <div class="comment">
-  <i><%comment.username %> :</i><br />
+  <strong><%= comment.username %> :</strong>
+  <br />
   <%= comment.body %>
   <% if comment.username == current_user.username %>
-  <%= link_to 'Destroy Comment', comment,
+   &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to '<button class="comment">Delete</button>'.html_safe, comment,
     :confirm => 'Are you sure?',
     :method => :delete %>
   <% end %>

@@ -1,6 +1,6 @@
 <body>
 
-  <%= link_to 'New Message', new_message_path%>
+  <%= link_to '<button>New Message</button>'.html_safe, new_message_path%>
   <br>
   <div style ="padding: 0 15px;">
     <div class = "row">
@@ -18,8 +18,8 @@
           
 
                 <div class="pull-right">
-                  <%= link_to 'Show', message %>
-                  <%= link_to 'Remove', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to '<button>Show</button>'.html_safe, message %>
+                  <%= link_to '<button>Remove</button>'.html_safe, message, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
               </div>
             </div>
@@ -41,8 +41,8 @@
                 
 
                 <div class="pull-right">
-                  <%= link_to 'Show', message %>
-                  <%= link_to 'Remove', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to '<button>Show</button>'.html_safe, message %>
+                  <%= link_to '<button>Remove</button>'.html_safe, message, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
               </div>
             </div>

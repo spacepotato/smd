@@ -35,28 +35,30 @@
   <strong>Ticket price:</strong>
   <%= @event.ticket_price %>
 </p>
+<div class="home">
 <% if @event.image? %>
-	<%= image_tag @event.image.url(:medium) %>
-  <br>
-	<%= link_to 'Link to Picture', @event.image.url%>
-  <br>
+  <%= link_to_image(@event.image.url(:medium), @event.image.url) %>
+  &nbsp;&nbsp;&nbsp;
 <% end %>
 
 <% if @event.image2? %>
-  <%= image_tag @event.image2.url(:medium) %>
-  <br>
-  <%= link_to 'Link to Picture', @event.image2.url%>
-  <br>
+ <%= link_to_image(@event.image2.url(:medium), @event.image2.url) %>
+ &nbsp;&nbsp;&nbsp;
 <% end %>
 
 <% if @event.image3? %>
-  <%= image_tag @event.image3.url(:medium) %>
-  <br>
-  <%= link_to 'Link to Picture', @event.image3.url%>
-  <br>
-  <br>
+ <%= link_to_image(@event.image3.url(:medium), @event.image3.url) %>
+ &nbsp;&nbsp;&nbsp;
 <% end %>
+</div>
 
+  <br>
+  <br>
+
+<h4><strong> Comments</strong> </h2>
+ <%= render :partial => 'comment', :collection => @event.comments %>
+ <br>
+ <br>
 
 <%= form_for(@comment, :html => { :multipart => true, :class => "custom"}) do |f| %>
   <%= f.hidden_field :event_id, :value => @event.id %>
@@ -64,14 +66,20 @@
  
     <%= f.label :body %>
     <%= f.text_area :body %>
-    
-    <%= f.submit "Post Comment" %>
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.submit "Post Comment", :class =>"comment" %>
   
 <% end %>
 
-<%= render :partial => 'comment', :collection => @event.comments %>
+  <br>
+  <br>
+
 
 <% if user_signed_in? && @is_club_admin %>
-<%= link_to 'Edit', edit_event_path(@event) %> 
+<%= link_to '<button>Edit</button>'.html_safe, edit_event_path(@event) %> 
 <% end %>
-<%= link_to 'Back', events_path %>
+<%= link_to '<button>Back</button>'.html_safe, events_path %>
+ <br>
+ <br>
