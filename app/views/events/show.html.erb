@@ -1,9 +1,16 @@
 
 <h1>
   <strong>
-  <%= @event.name %>
+    <%= @event.name %>
   </strong>
 </h1>
+<% if is_following?(@event.id) %>
+<%= link_to 'Unfollow Club', @event, method: :put %></td>
+<% else %>
+<%= link_to 'Follow Club', @event, method: :post %></td>
+
+<% end %>
+
 
 <p>
   <strong>Location:</strong>
@@ -36,37 +43,37 @@
   <%= @event.ticket_price %>
 </p>
 <% if @event.image? %>
-	<%= image_tag @event.image.url(:medium) %>
-  <br>
-	<%= link_to 'Link to Picture', @event.image.url%>
-  <br>
+<%= image_tag @event.image.url(:medium) %>
+<br>
+<%= link_to 'Link to Picture', @event.image.url%>
+<br>
 <% end %>
 
 <% if @event.image2? %>
-  <%= image_tag @event.image2.url(:medium) %>
-  <br>
-  <%= link_to 'Link to Picture', @event.image2.url%>
-  <br>
+<%= image_tag @event.image2.url(:medium) %>
+<br>
+<%= link_to 'Link to Picture', @event.image2.url%>
+<br>
 <% end %>
 
 <% if @event.image3? %>
-  <%= image_tag @event.image3.url(:medium) %>
-  <br>
-  <%= link_to 'Link to Picture', @event.image3.url%>
-  <br>
-  <br>
+<%= image_tag @event.image3.url(:medium) %>
+<br>
+<%= link_to 'Link to Picture', @event.image3.url%>
+<br>
+<br>
 <% end %>
 
 
 <%= form_for(@comment, :html => { :multipart => true, :class => "custom"}) do |f| %>
-  <%= f.hidden_field :event_id, :value => @event.id %>
-  <%= f.hidden_field :username, :value => current_user.username %>
- 
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-    
-    <%= f.submit "Post Comment" %>
-  
+<%= f.hidden_field :event_id, :value => @event.id %>
+<%= f.hidden_field :username, :value => current_user.username %>
+
+<%= f.label :body %>
+<%= f.text_area :body %>
+
+<%= f.submit "Post Comment" %>
+
 <% end %>
 
 <%= render :partial => 'comment', :collection => @event.comments %>

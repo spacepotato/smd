@@ -1,13 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index] 
-  helper_method :is_club_current_admin?
+  helper_method :is_club_current_admin?, :follow_event, :is_following?, :unfollow_event
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
-    @is_club_admin = is_club_admin?
+    if user_signed_in?
+      @is_club_admin = is_club_admin?
+    else
+      @is_club_admin = false
+    end
   end
 
   # GET /events/1
@@ -89,6 +93,43 @@ class EventsController < ApplicationController
       end
     end
     return false
+  end
+
+  #Creating an entry in the Event follows table to indicate that the current user is following the current event
+  def follow_event
+    @follow = EventFollows.new(:user_id => current_user.id, :event_id => params[:id] )
+    respond_to do |format|
+      if @follow.save
+        format.html { redirect_to Event.find(params[:id]), notice: 'You have successfully followed this event' }
+        format.json { render :show, status: :created, location: @follow }
+      else
+        format.html { render :new }
+        format.json { render json: @follow.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+  #It doesn't make sense to display a follow button if the user is already following the event, so we need a way
+  #To check if the current is following the current event
+  def is_following?(event_id)
+    EventFollows.all.each do |temp_follow|
+      if temp_follow.user_id == current_user.id && temp_follow.event_id == event_id
+        return true
+      end
+    end
+    return false
+  end
+
+  #Making it so the user can unfollow an event
+  def unfollow_event
+    @follow = EventFollows.where(:user_id=>current_user.id).where(:event_id=> params[:id]).first
+    @follow.destroy
+    respond_to do |format|
+      format.html { redirect_to Event.find(params[:id]), notice: 'Event was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+
   end
 
   private

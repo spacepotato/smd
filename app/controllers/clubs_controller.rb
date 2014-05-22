@@ -9,6 +9,8 @@ class ClubsController < ApplicationController
     @clubs = Club.all
     if user_signed_in?
       @is_club_admin = is_club_admin?
+    else
+      @is_club_admin = false
     end
   end
 
