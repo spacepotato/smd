@@ -100,13 +100,16 @@ class ClubsController < ApplicationController
     return false
   end
 
-    def notify_admins(club_name)
+  def notify_admins(club_name)
 
     received = Array.new
 
     ClubAdmin.all.each do |temp_admin|
+      if receieved.include? temp_admin.user_id
+        continue
+      end
 
-      if temp_admin.user_id != current_user.id && !received.include? temp_admin.user_id
+      if temp_admin.user_id != current_user.id
         @temp_message = Message.new
         @temp_message.user_id = temp_admin.user_id
         @temp_message.sender = "ClubBiz"
