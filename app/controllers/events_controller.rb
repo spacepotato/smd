@@ -49,6 +49,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.parent_club = Club.find(params[:parent_club]).name
 
     respond_to do |format|
       if @event.save
