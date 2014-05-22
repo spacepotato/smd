@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
- 
+
     if @comment.save
       flash[:notice] = 'Comment was successfully created.'
       redirect_to(@comment.event)
@@ -10,15 +10,15 @@ class CommentsController < ApplicationController
       redirect_to(@comment.event)
     end
   end
- 
+
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
- 
+
     redirect_to(@comment.event)
   end
 
-    private
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @comment = Comment.find(params[:id])
@@ -28,4 +28,4 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:username, :body, :event_id)
     end
-end
+  end
