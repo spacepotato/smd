@@ -44,6 +44,8 @@ class ClubsController < ApplicationController
     # @club_admin.position = "El Presidente"
     @club_admin.save
 
+    notify_admins(@club.name)
+
 
     respond_to do |format|
       if @club.save
@@ -96,6 +98,26 @@ class ClubsController < ApplicationController
       end
     end
     return false
+  end
+
+    def notify_admins(club_name)
+
+    received = Array.new
+
+    ClubAdmin.all.each do |temp_admin|
+
+      if temp_admin.user_id != current_user.id && !received.include? temp_admin.user_id
+        @temp_message = Message.new
+        @temp_message.user_id = temp_admin.user_id
+        @temp_message.sender = "ClubBiz"
+        @temp_message.recipient = User.find(temp_admin.user_id).username
+        @temp_message.body = "The club #{club_name} has just been created"
+        @temp_message.save
+
+        #Because we don't want a user to recieve multiple messages if they are the admin of multiple clubs
+        received.push(temp_admin.user_id)
+      end
+    end
   end
 
   private
