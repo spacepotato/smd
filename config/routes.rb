@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  resources :comments
+
   get 'home/show'
  
 
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
   resources :events
 
   resources :clubs
+
+  resources :comments
 
   get 'home/show' =>'home#show',:as=>:show
   get 'home' => 'home#show'

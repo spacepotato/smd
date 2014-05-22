@@ -1,22 +1,15 @@
-
 body {
-  
+  background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  background-color:#fff;
-  background-repeat:no-repeat;
-  background-attachment:fixed;
-  background-position:center; 
-  background-size:100% 100%;
 }
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  color:#68217a;
 }
 
 pre {
@@ -26,20 +19,19 @@ pre {
 }
 
 a {
-  color: #68217a;
+  color: #000;
   &:visited {
-    color: #68217a;
+    color: #666;
   }
   &:hover {
     color: #fff;
-    background-color: #68217a;
+    background-color: #000;
   }
 }
 
 div {
   &.field, &.actions {
     margin-bottom: 10px;
-    color:#68217a;
   }
 }
 

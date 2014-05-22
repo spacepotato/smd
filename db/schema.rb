@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522090729) do
+ActiveRecord::Schema.define(version: 20140522100342) do
 
   create_table "club_admins", force: true do |t|
     t.integer  "club_id"
@@ -31,34 +31,45 @@ ActiveRecord::Schema.define(version: 20140522090729) do
     t.string   "description"
   end
 
-# Could not dump table "comments" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "comments", force: true do |t|
+    t.string   "username"
+    t.text     "body"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "events" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  add_index "comments", ["event_id"], name: "index_comments_on_event_id"
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.date     "event_date"
+    t.time     "start_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "ticket_price"
+    t.integer  "num_of_tickets"
+    t.string   "ticket_info"
+    t.string   "image2_file_name"
+    t.string   "image2_content_type"
+    t.integer  "image2_file_size"
+    t.datetime "image2_updated_at"
+    t.string   "image3_file_name"
+    t.string   "image3_content_type"
+    t.integer  "image3_file_size"
+    t.datetime "image3_updated_at"
+  end
 
 # Could not dump table "messages" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
 
 # Could not dump table "users" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
-
-  create_table "views", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "views", ["email"], name: "index_views_on_email", unique: true
-  add_index "views", ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true
 
 end

@@ -20,7 +20,7 @@
     <%= f.text_field :location %>
   </div>
 
-
+  <% if !@belonging_clubs.blank? %>
   <div class="field">
     <%= f.label :parent_club %><br>
     <select name="parent_club">
@@ -30,6 +30,8 @@
     </select>
 
   </div>
+
+  <% end  %>
 
 
   <div class="field">

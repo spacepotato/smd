@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /events/new
@@ -83,10 +84,10 @@ class EventsController < ApplicationController
 
   def is_club_current_admin?(club_id)
     ClubAdmin.all.each do |temp_entry|
-          if temp_entry.user_id == current_user.id && temp_entry.club_id == club_id
-              return true
-          end
-        end
+      if temp_entry.user_id == current_user.id && temp_entry.club_id == club_id
+        return true
+      end
+    end
     return false
   end
 
@@ -100,4 +101,4 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :location, :event_date, :start_time, :description, :ticket_info, :num_of_tickets, :ticket_price, :image, :image2, :image3)
     end
-end
+  end

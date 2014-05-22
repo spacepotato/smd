@@ -1,0 +1,9 @@
+<div class="comment">
+  <i><%comment.username %> :</i><br />
+  <%= comment.body %>
+  <% if comment.username == current_user.username %>
+  <%= link_to 'Destroy Comment', comment,
+    :confirm => 'Are you sure?',
+    :method => :delete %>
+  <% end %>
+</div>
