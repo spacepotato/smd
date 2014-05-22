@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521040405) do
+ActiveRecord::Schema.define(version: 20140522090729) do
 
   create_table "club_admins", force: true do |t|
     t.integer  "club_id"
@@ -31,30 +31,11 @@ ActiveRecord::Schema.define(version: 20140521040405) do
     t.string   "description"
   end
 
-  create_table "events", force: true do |t|
-    t.string   "name"
-    t.string   "location"
-    t.date     "event_date"
-    t.time     "start_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "description"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.integer  "ticket_price"
-    t.integer  "num_of_tickets"
-    t.string   "ticket_info"
-    t.string   "image2_file_name"
-    t.string   "image2_content_type"
-    t.integer  "image2_file_size"
-    t.datetime "image2_updated_at"
-    t.string   "image3_file_name"
-    t.string   "image3_content_type"
-    t.integer  "image3_file_size"
-    t.datetime "image3_updated_at"
-  end
+# Could not dump table "comments" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
+
+# Could not dump table "events" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
 # Could not dump table "messages" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
