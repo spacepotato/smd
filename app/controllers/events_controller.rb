@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @followers = Array.new
-    @temp_id = params[:id]
+    
     EventFollows.all.each do |temp_follow|
       if temp_follow.event_id == params[:id].to_i
         @followers.push(User.find(params[:id]))

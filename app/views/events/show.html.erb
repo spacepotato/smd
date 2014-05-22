@@ -4,6 +4,7 @@
     <%= @event.name %>
   </strong>
 </h1>
+<% if user_signed_in? %>
 <% if is_following?(@event.id) %>
 
 <a class = "btn btn-default"
@@ -13,6 +14,8 @@
 <%= link_to 'Follow Club', @event, method: :post %> 
 
 <% end %>
+<% end %>
+
 
 <br>
 <br>
@@ -48,55 +51,56 @@
   <%= @event.ticket_price %>
 </p>
 <div class="home">
-<% if @event.image? %>
+  <% if @event.image? %>
   <%= link_to_image(@event.image.url(:medium), @event.image.url) %>
   &nbsp;&nbsp;&nbsp;
-<% end %>
+  <% end %>
 
-<% if @event.image2? %>
- <%= link_to_image(@event.image2.url(:medium), @event.image2.url) %>
- &nbsp;&nbsp;&nbsp;
-<% end %>
+  <% if @event.image2? %>
+  <%= link_to_image(@event.image2.url(:medium), @event.image2.url) %>
+  &nbsp;&nbsp;&nbsp;
+  <% end %>
 
-<% if @event.image3? %>
- <%= link_to_image(@event.image3.url(:medium), @event.image3.url) %>
- &nbsp;&nbsp;&nbsp;
-<% end %>
+  <% if @event.image3? %>
+  <%= link_to_image(@event.image3.url(:medium), @event.image3.url) %>
+  &nbsp;&nbsp;&nbsp;
+  <% end %>
 </div>
 
-  <br>
-  <br>
-
+<br>
+<br>
+<% if user_signed_in? %>
 <h4><strong> Comments</strong> </h2>
  <%= render :partial => 'comment', :collection => @event.comments %>
  <br>
  <br>
 
-<%= form_for(@comment, :html => { :multipart => true, :class => "custom"}) do |f| %>
+ <%= form_for(@comment, :html => { :multipart => true, :class => "custom"}) do |f| %>
 
-  <%= f.hidden_field :event_id, :value => @event.id %>
-  <%= f.hidden_field :username, :value => current_user.username %>
+ <%= f.hidden_field :event_id, :value => @event.id %>
+ <%= f.hidden_field :username, :value => current_user.username %>
  
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-    <br>
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <%= f.submit "Post Comment", :class =>"comment" %>
-
-<% end %>
-
-  <br>
-  <br>
-
-
-<h4><strong> Followers</strong> </h2>
- <%= render :partial => 'followers', :collection => @followers %>
+ <%= f.label :body %>
+ <%= f.text_area :body %>
  <br>
  <br>
- <% if user_signed_in? && @is_club_admin %>
-<%= link_to '<button>Edit</button>'.html_safe, edit_event_path(@event) %> 
-<% end %>
-<%= link_to '<button>Back</button>'.html_safe, events_path %>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <%= f.submit "Post Comment", :class =>"comment" %>
+
+ <% end %>
+
  <br>
  <br>
+
+
+ <h4><strong> Followers</strong> </h2>
+   <%= render :partial => 'followers', :collection => @followers %>
+   <br>
+   <br>
+   <% if @is_club_admin %>
+   <%= link_to '<button>Edit</button>'.html_safe, edit_event_path(@event) %> 
+   <% end %>
+   <% end %> <!-- Ending the comment blocking for unsigned in users -->
+   <%= link_to '<button>Back</button>'.html_safe, events_path %>
+   <br>
+   <br>
