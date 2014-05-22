@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/search', to: 'search#search', :as => :search
   post 'events/:id' =>'events#follow_event'
   put 'events/:id' =>'events#unfollow_event'
+  delete 'home/show/:id' => 'comments#destory'
 
 
   resources :messages

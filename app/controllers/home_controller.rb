@@ -22,7 +22,7 @@ class HomeController < ApplicationController
         temp_event = Event.find(temp_follow.event_id)
         temp_event.comments.each do |temp_comment|
           if temp_comment.is_announcement
-            @announcements.push(temp_comment.body)
+            @announcements.push(temp_comment)
           end
         end
       end

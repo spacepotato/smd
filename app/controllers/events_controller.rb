@@ -88,7 +88,7 @@ class EventsController < ApplicationController
 
   def is_club_admin?
     ClubAdmin.all.each do |temp_entry|
-      if temp_entry.user_id == current_user.id
+      if temp_entry.user_id == current_user
         return true
       end
     end
