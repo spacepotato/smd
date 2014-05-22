@@ -51,8 +51,12 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.parent_club = Club.find(params[:parent_club]).name
 
+    @club_event = ClubEvents.new
+    @club_event.club_id = params[:parent_club]
+    @club_event.event_id = params[:id]
+
     respond_to do |format|
-      if @event.save
+      if @event.save && @club_event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -88,7 +92,7 @@ class EventsController < ApplicationController
 
   def is_club_admin?
     ClubAdmin.all.each do |temp_entry|
-      if temp_entry.user_id == current_user
+      if temp_entry.user_id == current_user.id
         return true
       end
     end

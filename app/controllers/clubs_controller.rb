@@ -19,7 +19,7 @@ class ClubsController < ApplicationController
   def show
     @club_events = Array.new
     ClubEvents.all.each do |temp_event|
-      if temp_event.club_id == @club.id
+      if temp_event.club_id == params[:id].to_i
         @club_events.push(temp_event)
       end
     end
