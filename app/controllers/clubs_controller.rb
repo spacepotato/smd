@@ -51,12 +51,19 @@ class ClubsController < ApplicationController
     end
   end
 
-  def add_admin
-
+  def add_admin(:club club, :user admin)
+    @temp_admin = ClubAdmin.new
+    @temp_admin.user = admin
+    @temp_admin.club = club
+    @temp_admin.save
   end
 
-  def remove_admin
-
+  def remove_admin(:club club, :user admin)
+    ClubAdmin.all.each do |temp_admin|
+      if temp_admin.user_id == admin && temp_admin.club_id == club 
+        temp_admin.destroy
+      end
+    end
   end
   
   # POST /clubs

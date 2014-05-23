@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   post 'events/:id/reserve_ticket' => 'events#reserve_ticket', as: :reserve_ticket
 
 
+  #
+  
+
   resources :messages
 
   resources :events
@@ -20,7 +23,7 @@ Rails.application.routes.draw do
   resources :clubs
 
   resources :comments
-
+  delete 'clubs/:id/:name' =>'clubs#remove_admin' ,:as=>:remove_admin
   get 'home/show' =>'home#show',:as=>:show
 
   devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
