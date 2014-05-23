@@ -8,10 +8,10 @@
 <% if is_following?(@event.id) %>
 
 <a class = "btn btn-default"
-<%= link_to 'Unfollow Club', @event, method: :put %>
+<%= link_to 'Unfollow Event', @event, method: :put %>
 <% else %>
 <a class = "btn btn-default"
-<%= link_to 'Follow Club', @event, method: :post %> 
+<%= link_to 'Follow Event', @event, method: :post %> 
 
 <% end %>
 <% end %>

@@ -3,7 +3,6 @@ class HomeController < ApplicationController
   def show
 
     @announcements = Array.new
-
     @events_retrieved = Event.all.shuffle
     @events = Array.new
     @counter = 0
@@ -22,7 +21,7 @@ class HomeController < ApplicationController
         temp_event = Event.find(temp_follow.event_id)
         temp_event.comments.each do |temp_comment|
           if temp_comment.is_announcement
-            @announcements.push(temp_comment)
+            @announcements.push( [temp_comment, temp_event] )
           end
         end
       end

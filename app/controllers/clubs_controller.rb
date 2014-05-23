@@ -112,7 +112,7 @@ class ClubsController < ApplicationController
 
     ClubAdmin.all.each do |temp_admin|
       if received.include? temp_admin.user_id
-        continue
+        next
       end
 
       if temp_admin.user_id != current_user.id

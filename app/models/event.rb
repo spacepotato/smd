@@ -1,9 +1,11 @@
 class Event < ActiveRecord::Base
 
-has_and_belongs_to_many :clubs
+
 has_many :comments
 has_many :club_events
 has_many :events, :through => :club_events
+has_many :event_follows
+has_many :users, :through => :event_follows
 
 has_attached_file :image, :styles => {
       :thumb => "100x100#",
