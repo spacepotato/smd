@@ -65,8 +65,12 @@ class ClubsController < ApplicationController
     @club = Club.new(club_params)
     if !validate_club(@club.name)
       flash[:error] = "This is not a registered club"
+      redirect_to :back
+      return
     elsif does_club_exist?(@club.name)
         flash[:error] = "This is club already exists"
+        redirect_to :back
+        return
     else
     @club_admin = ClubAdmin.new({:user => current_user,:club => @club, :position => "El Presidente"})
     # @club_admin.club_id = @club.id
@@ -87,7 +91,8 @@ class ClubsController < ApplicationController
       end
     end
   end
-  redirect_to :back
+ 
+  return
   end
 
   # PATCH/PUT /clubs/1
@@ -167,7 +172,6 @@ class ClubsController < ApplicationController
   def validate_club(club_name)
     
     if File.open('app/assets/umsu clubs.txt').lines.any?{|line| line.include?(club_name)}
-      puts "FOUND THE CLUB IN THE FILE!"
       return true
     end
 
