@@ -156,18 +156,12 @@ class EventsController < ApplicationController
       temp_ticket = Ticket.new
       temp_ticket.event_id = @event.id
       temp_ticket.user_id = current_user.id
-
       temp_ticket.save
     end
 
     event.num_of_tickets = event.num_of_tickets - @quantity
-
-
     flash[:success] = "Tickets reserved successfully"
     redirect_to :back
-
-
-
   end
 
       private
