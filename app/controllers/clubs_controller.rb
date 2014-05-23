@@ -54,7 +54,8 @@ class ClubsController < ApplicationController
     @club = Club.new(club_params)
     if !validate_club(@club.name)
       flash[:error] = "This is not a registered club"
-
+    elsif does_club_exist?(@club.name)
+        flash[:error] = "This is club already exists"
     else
     @club_admin = ClubAdmin.new({:user => current_user,:club => @club, :position => "El Presidente"})
     # @club_admin.club_id = @club.id
@@ -105,6 +106,15 @@ class ClubsController < ApplicationController
   def is_club_admin?
     ClubAdmin.all.each do |temp_entry|
       if temp_entry.user_id == current_user.id
+        return true
+      end
+    end
+    return false
+  end
+
+  def does_club_exist?(club_name)
+    Club.all.each do |temp_club|
+      if temp_club.name == club_name
         return true
       end
     end
