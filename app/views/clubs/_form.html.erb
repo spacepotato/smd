@@ -11,25 +11,38 @@
       </ul>
     </div>
   <% end %>
+  <div class = "row">
+    <div class = "col">
+      <div class="field">
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :webLink %><br>
+        <%= f.text_field :webLink %>
+      </div>
+      <div class="field">
+        <%= f.label :registrationNumber %><br>
+        <%= f.number_field :registrationNumber %>
+      </div>
+        <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_area :description %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    </div>
+  <div class = "col">
+     <div class="field">
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+
+
+
   </div>
-  <div class="field">
-    <%= f.label :webLink %><br>
-    <%= f.text_field :webLink %>
-  </div>
-  <div class="field">
-    <%= f.label :registrationNumber %><br>
-    <%= f.number_field :registrationNumber %>
-  </div>
-    <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>
 

@@ -40,6 +40,14 @@ class ClubsController < ApplicationController
     end
   end
 
+  def add_admin
+
+  end
+
+  def remove_admin
+
+  end
+  
   # POST /clubs
   # POST /clubs.json
   def create
