@@ -91,7 +91,7 @@ class ClubsController < ApplicationController
       end
     end
   end
- 
+
   return
   end
 
