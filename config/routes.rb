@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/search', to: 'search#search', :as => :search
   post 'events/:id' =>'events#follow_event'
   put 'events/:id' =>'events#unfollow_event'
-  delete 'home/show/:id' => 'comments#destory'
+  delete 'home/show/:id' => 'comments#destroy'
 
   post 'events/:id/reserve_ticket' => 'events#reserve_ticket', as: :reserve_ticket
 
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :comments
 
   get 'home/show' =>'home#show',:as=>:show
+
   devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

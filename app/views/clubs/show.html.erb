@@ -25,6 +25,12 @@
    <br>
    <br>
 
+<h4><strong>Club Administrators</strong> </h2>
+  <%= render :partial => 'club_admins', :collection => @club_admin %>
+   <br>
+   <br>
+
+
 <% if user_signed_in? && is_club_current_admin?(@club.id) %>
 <%= link_to '<button>Edit</button>'.html_safe, edit_club_path(@club) %>
 <% end %>
