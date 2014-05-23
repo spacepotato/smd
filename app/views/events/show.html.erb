@@ -46,6 +46,13 @@
   <strong>Tickets available:</strong>
   <%= @event.num_of_tickets %>
 </p>
+
+<p>
+  <%= form_tag reserve_ticket_path do %>
+  <%= text_field_tag :quantity, params[:quantity] %>
+  <%= submit_tag "Reserve" %>
+  <% end %>
+</p>
 <p>
   <strong>Ticket price:</strong>
   <%= @event.ticket_price %>

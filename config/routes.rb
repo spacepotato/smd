@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   
 
+  resources :tickets
+
   resources :comments
 
   post '/search', to: 'search#search', :as => :search
   post 'events/:id' =>'events#follow_event'
   put 'events/:id' =>'events#unfollow_event'
   delete 'home/show/:id' => 'comments#destory'
+
+  post 'events/:id/reserve_ticket' => 'events#reserve_ticket', as: :reserve_ticket
 
 
   resources :messages
