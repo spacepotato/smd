@@ -4,8 +4,12 @@ class Event < ActiveRecord::Base
 has_many :comments
 has_many :club_events
 has_many :events, :through => :club_events
+<<<<<<< HEAD
 has_many :event_follows
 has_many :users, :through => :event_follows
+=======
+has_many :tickets
+>>>>>>> FETCH_HEAD
 
 has_attached_file :image, :styles => {
       :thumb => "100x100#",

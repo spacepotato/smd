@@ -44,6 +44,10 @@ class ClubsController < ApplicationController
   # POST /clubs.json
   def create
     @club = Club.new(club_params)
+    if !validate_club(@club.name)
+      flash[:error] = "This is not a registered club"
+
+    else
     @club_admin = ClubAdmin.new({:user => current_user,:club => @club, :position => "El Presidente"})
     # @club_admin.club_id = @club.id
     # @club_admin.user_id = current_user.id
@@ -62,6 +66,8 @@ class ClubsController < ApplicationController
         format.json { render json: @club.errors, status: :unprocessable_entity }
       end
     end
+  end
+  redirect_to :back
   end
 
   # PATCH/PUT /clubs/1
@@ -127,6 +133,16 @@ class ClubsController < ApplicationController
         received.push(temp_admin.user_id)
       end
     end
+  end
+
+  def validate_club(club_name)
+    
+    if File.open('app/assets/umsu clubs.txt').lines.any?{|line| line.include?(club_name)}
+      puts "FOUND THE CLUB IN THE FILE!"
+      return true
+    end
+
+    return false
   end
 
   private
