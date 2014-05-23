@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523111106) do
+ActiveRecord::Schema.define(version: 20140523114800) do
 
   create_table "club_admins", force: true do |t|
     t.integer  "club_id"
@@ -65,10 +65,6 @@ ActiveRecord::Schema.define(version: 20140523111106) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.integer  "ticket_price"
     t.integer  "num_of_tickets"
     t.string   "ticket_info"
@@ -81,6 +77,14 @@ ActiveRecord::Schema.define(version: 20140523111106) do
     t.integer  "image3_file_size"
     t.datetime "image3_updated_at"
     t.string   "parent_club"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 # Could not dump table "messages" because of following NoMethodError

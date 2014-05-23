@@ -1,3 +1,7 @@
+<% if @event.banner? %>
+  <%= link_to_image(@event.banner.url(:banner), @event.banner.url) %>
+  <% end %>
+
 
 <h1>
   <strong>

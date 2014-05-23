@@ -1,5 +1,5 @@
-class AddImagesToEvents < ActiveRecord::Migration
-  def self.up
+class AddImageToEvents < ActiveRecord::Migration
+     def self.up
   	add_attachment :events, :image
   end
 

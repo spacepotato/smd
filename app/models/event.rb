@@ -11,6 +11,12 @@ has_many :users, :through => :event_follows
 has_many :tickets
 
 
+has_attached_file :banner, :styles => {
+      :thumb => "100x100#",
+      :small  => "150x150#",
+      :medium => "300x300#",
+      :banner => "200x500#"}
+
 has_attached_file :image, :styles => {
       :thumb => "100x100#",
       :small  => "150x150#",
