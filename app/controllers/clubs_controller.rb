@@ -17,13 +17,14 @@ class ClubsController < ApplicationController
   # GET /clubs/1
   # GET /clubs/1.json
   def show
-    # @club_events = Array.new
-    # ClubEvents.all.each do |temp_event|
-    #   if temp_event.club_id == params[:id].to_i
-    #     @club_events.push(temp_event)
-    #   end
-    # end
-    @club_events = Club.find(params[:id]).events
+    @club_event = Array.new
+    @club = Club.find(params[:id])
+
+    Event.all.each do |temp_event|
+      if temp_event.parent_club.to_s == @club.name.to_s
+        @club_event.push(temp_event)
+      end 
+    end
   end
 
   # GET /clubs/new
