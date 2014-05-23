@@ -18,10 +18,9 @@ class ClubsController < ApplicationController
   # GET /clubs/1.json
   def show
     @club_event = Array.new
-    @club = Club.find(params[:id])
 
     Event.all.each do |temp_event|
-      if temp_event.parent_club.to_s == @club.name.to_s
+      if temp_event.parent_club == @club.name.to_s
         @club_event.push(temp_event)
       end 
     end
