@@ -17,7 +17,7 @@ class SearchController < ApplicationController
 			@clubs.push(club_description)
 		end
 
-		return @events
+		return @clubs
 
 	end
 

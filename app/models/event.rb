@@ -39,7 +39,7 @@ validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   		events = Array.new
 
   		Event.all.each do |temp_event|
-  			if temp_event.name.include? search || temp_event.name == search
+  			if temp_event.name.include? search
   				events.push(temp_event)
   			end
   		end
