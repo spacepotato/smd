@@ -1,3 +1,11 @@
+<% if @club.banner? %>
+<div class="banner">
+  <%= image_tag @club.banner.url(:banner) %>
+</div>
+<% end %>
+
+<br >
+
 <h1>
   <strong>
   <%= @club.name %>
@@ -17,6 +25,26 @@
   <strong>Description:</strong>
   <%= @club.description %>
 </p>
+
+<br>
+<br>
+
+<div class="home">
+  <% if @club.image? %>
+  <%= link_to_image(@club.image.url(:medium), @club.image.url) %>
+  &nbsp;&nbsp;&nbsp;
+  <% end %>
+
+  <% if @club.image2? %>
+  <%= link_to_image(@club.image2.url(:medium), @club.image2.url) %>
+  &nbsp;&nbsp;&nbsp;
+  <% end %>
+
+  <% if @club.image3? %>
+  <%= link_to_image(@club.image3.url(:medium), @club.image3.url) %>
+  &nbsp;&nbsp;&nbsp;
+  <% end %>
+</div>
 
 <br>
 <br>
