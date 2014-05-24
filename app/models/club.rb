@@ -1,8 +1,8 @@
 class Club < ActiveRecord::Base
-
-  
+ 
 
   has_many :club_admins
+  accepts_nested_attributes_for :club_admins
   has_many :clubs_events
   has_many :events, :through => :club_events
   has_many :users, :through => :club_admins

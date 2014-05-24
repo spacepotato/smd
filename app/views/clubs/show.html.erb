@@ -28,26 +28,7 @@
 <h4><strong>Club Administrators</strong> </h2>
   <%= render :partial => 'club_admins', :collection => @club_admin %>
    <br>
-<%= form_for(@new_admin, :html => { :multipart => true, :class => "custom"}) do |f| %>
-<%= f.hidden_field :club_id, :value => @club.id %>
-<div class = "field">
-   <%= f.label :user_id  %>
-   <%= f.text_area :user_id %>
-</div>
-<div class = "field">
-   <%= f.label :position %>
-   <%= f.text_area :position %>
-</div>
-<div class = "field">
-   <%= f.label :phone %>
-   <%= f.text_area :phone %>
-</div>
 
-<div class="actions">
-    <%= f.submit %>
-</div>
-
-<% end %>
 
    <br>
 
