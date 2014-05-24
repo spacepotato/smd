@@ -156,11 +156,15 @@ class ClubsController < ApplicationController
   # DELETE /clubs/1
   # DELETE /clubs/1.json
   def destroy
+    if is_club_current_admin?(@club.id)
     @club.destroy
     respond_to do |format|
       format.html { redirect_to clubs_url, notice: 'Club was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+else
+  flash[:error] = "You cannot delete a club you did not create"
   end
 
   def is_club_admin?
