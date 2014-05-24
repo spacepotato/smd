@@ -50,21 +50,16 @@ class ClubsController < ApplicationController
   end
 
   def add_admin
-    @username = "username"
-    @new_admin = ClubAdmin.new(admin_params)
-    @new_admin.club_id = @club
-    @new_admin.user_id = User.find_by( username: @username)
+    @username = params[:username]
+    @new_admin = ClubAdmin.new
+    @new_admin.club_id = params[:id].to_i
+    @new_admin.user_id = User.find_by(username: @username).id
+    @new_admin.position = params[:position]
+    @new_admin.phone = params[:phone]
 
     respond_to do |format|
       #If we are trying to send a message to a user that doesn't exist we want to let the User know that this is just not on
-      if @user.blank?
-        flash[:error] = "The user does not exist"
-        format.html { redirect_to :back}
-        format.json { render :show, status: :created, location: @message}
-      else
-
-
-        if @club_admin.save
+        if @new_admin.save
           flash[:success] = "Your admin has been created"
           format.html { redirect_to :back}
           format.json { render :show, status: :created, location: @message}
@@ -74,7 +69,6 @@ class ClubsController < ApplicationController
         end
       end
     end
-  end
 
   def remove_admin
 

@@ -60,6 +60,15 @@
 
    <br>
 
+   <p>
+  <%= form_tag add_admin_path do %>
+  <%= text_field_tag :username, params[:username] %>
+  <%= text_field_tag :position, params[:position] %>
+  <%= text_field_tag :phone, params[:phone] %>
+  <%= submit_tag "Add" %>
+  <% end %>
+</p>
+
 
 <% if user_signed_in? && is_club_current_admin?(@club.id) %>
 <%= link_to '<button>Edit</button>'.html_safe, edit_club_path(@club) %>

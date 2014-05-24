@@ -3,6 +3,7 @@
 	"<%=club_admins.position%>"</strong> <br>
 	&nbsp;&nbsp;&nbsp;Phone: <%=club_admins.phone%><br>
 	&nbsp;&nbsp;&nbsp;Email: <%=club_admins.user.email%><br>
+	&nbsp;&nbsp;&nbsp;Email: <%=club_admins.position%><br>
 	<% if user_signed_in? && is_club_current_admin?(@club.id)%>
 	<%= button_to "remove" , remove_admin_path(@club.id , club_admins.user_id) , data: { confirm: "Are you sure?" } %>
 	<%end%>
