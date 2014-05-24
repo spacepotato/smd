@@ -2,7 +2,7 @@
   <strong><%= comment.username %> </strong>
   <br />
   <%= comment.body %>
-  <% if comment.username == current_user.username %>
+  <% if (comment.username == current_user.username) or @is_club_admin %>
    &nbsp;&nbsp;&nbsp;&nbsp;
   <%= link_to '<button class="comment">Delete</button>'.html_safe, comment,
     :confirm => 'Are you sure?',

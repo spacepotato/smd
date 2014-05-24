@@ -108,10 +108,15 @@
  <br>
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <%= f.submit "Post Comment", :class =>"comment" %>
+ 
+ <% end %>
+ <br>
 
+<% if @is_club_admin %>
+ <h4><strong> Event Report</strong> </h4>
+ <p><%= :report%></p>
  <% end %>
 
- <br>
  <br>
 
 

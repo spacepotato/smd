@@ -19,13 +19,12 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @followers = Array.new
-
+    
     EventFollows.all.each do |temp_follow|
       if temp_follow.event_id == params[:id].to_i
         @followers.push(User.find(params[:id]))
       end
     end
-
   end
 
   # GET /events/new
@@ -172,6 +171,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :location, :event_date, :start_time, :description, :ticket_info, :num_of_tickets, :ticket_price, :banner, :image, :image2, :image3, :parent_club, :quantity)
+      params.require(:event).permit(:name, :location, :event_date, :start_time, :description, :ticket_info, :num_of_tickets, :ticket_price, :banner, :image, :image2, :image3, :parent_club, :quantity, :report)
     end
   end

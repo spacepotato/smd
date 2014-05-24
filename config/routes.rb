@@ -13,18 +13,18 @@ Rails.application.routes.draw do
   post 'events/:id/reserve_ticket' => 'events#reserve_ticket', as: :reserve_ticket
 
 
-  #
   
-
   resources :messages
 
   resources :events
 
   resources :clubs
+  resources :club_admins
 
   resources :comments
   
   post 'clubs/:club_id/:user_id/destroy' =>'clubs#remove_admin' , :as=>:remove_admin
+  post 'clubs/:club_id/:user_id/add' => 'clubs#add_admin', :as => :add_admin
 
   get 'home/show' =>'home#show',:as=>:show
 

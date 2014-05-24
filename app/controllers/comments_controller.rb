@@ -3,10 +3,10 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      flash[:notice] = 'Comment was successfully created.'
+      flash[:success] = 'Comment was successfully created.'
       redirect_to(@comment.event)
     else
-      flash[:notice] = "Error creating comment: #{@comment.errors}"
+      flash[:error] = "Error creating comment: #{@comment.errors}"
       redirect_to(@comment.event)
     end
   end

@@ -17,15 +17,13 @@ class ClubsController < ApplicationController
   # GET /clubs/1
   # GET /clubs/1.json
   def show
+    @new_admin = ClubAdmin.new
     @club_admin = Array.new
     ClubAdmin.all.each do |temp_admin|
       if temp_admin.club_id == @club.id
         @club_admin.push(temp_admin)
       end
     
-
-
-
     end    
 
     @club_event = Array.new
@@ -52,33 +50,58 @@ class ClubsController < ApplicationController
   end
 
   def add_admin
-    @temp_admin = ClubAdmin.new
-    @temp_admin.user = params[:user_id]
-    @temp_admin.club = params[:club_id]
-    @temp_admin.save
+    @username = "username"
+    @new_admin = ClubAdmin.new(admin_params)
+    @new_admin.club_id = @club
+    @new_admin.user_id = User.find_by( username: @username)
+
+    respond_to do |format|
+      #If we are trying to send a message to a user that doesn't exist we want to let the User know that this is just not on
+      if @user.blank?
+        flash[:error] = "The user does not exist"
+        format.html { redirect_to :back}
+        format.json { render :show, status: :created, location: @message}
+      else
+
+
+        if @club_admin.save
+          flash[:success] = "Your admin has been created"
+          format.html { redirect_to :back}
+          format.json { render :show, status: :created, location: @message}
+        else
+          format.html { render :new }
+          format.json { render json: @message.errors, status: :unprocessable_entity }
+        end
+      end
+    end
   end
 
   def remove_admin
-    if ClubAdmin.where(:club_id => params[:club_id].to_i).length <= 1
-      flash[:error] = "error: cannot remove last admin"
-      redirect_to :back
-      return
+    if is_club_current_admin
+      if ClubAdmin.where(:club_id => params[:club_id].to_i).length <= 1
+        flash[:error] = "error: cannot remove last admin"
+        redirect_to :back
+        return
+      else
+        @club_admin = ClubAdmin.where(:user_id=>params[:user_id].to_i , :club_id => params[:club_id].to_i)
+        
+        flash[:success] = "Success: impeached admin #{@club_admin.position}"
+        @club_admin.destroy
+        redirect_to :back
+      end
     else
-      @club_admin = ClubAdmin.where(:user_id=>params[:user_id].to_i , :club_id => params[:club_id].to_i).first
-      
-      flash[:success] = "Success: impeached admin #{@club_admin.position}"
-      @club_admin.destroy
-      redirect_to :back
+      flash[:error] = "error: not admin"
+      redirect_to :back\
     end
-    # respond_to do |params|
-    #   ClubAdmin.all.each do |temp_admin|
-    #     if (temp_admin.user.id == club_admin.user_id => params[:user_id] )
-    #       if (temp_admin.club.id == params[:club_id]) 
-    #         temp_admin.destroy
-    #       end
-    #     end
-    #   end
-    # end
+      # respond_to do |params|
+      #   ClubAdmin.all.each do |temp_admin|
+      #     if (temp_admin.user.id == club_admin.user_id => params[:user_id] )
+      #       if (temp_admin.club.id == params[:club_id]) 
+      #         temp_admin.destroy
+      #       end
+      #     end
+      #   end
+      # end
   end
   
   # POST /clubs
@@ -210,4 +233,8 @@ class ClubsController < ApplicationController
     def club_params
       params.require(:club).permit(:name, :webLink, :registrationNumber, :description)
     end
+
+    def admin_params
+      params.require(:club_admin).permit(:club_id, :user_id, :position, :phone)
+    end 
   end
