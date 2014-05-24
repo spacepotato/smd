@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+
     if user_signed_in?
       @is_club_admin = is_club_admin?
     else
@@ -97,6 +98,15 @@ class EventsController < ApplicationController
       end
     end
     return false
+  end
+
+  def get_club_id(event)
+    ClubEvent.all.each do |temp_event|
+      if temp_event.event_id == event.id
+        return temp_event.club_id
+      end
+    end
+    return 
   end
 
   #TO BE IMPLEMENTED ONCE WE HAVE A JOIN BETWEEN CLUBS AND EVENTS
