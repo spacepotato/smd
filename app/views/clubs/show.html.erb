@@ -59,6 +59,7 @@
 
 
    <br>
+   <% if user_signed_in? && is_club_current_admin?(@club.id)%>
  <h4><strong>Add New Club Administrators</strong> </h4>
   <%= form_tag add_admin_path do %>
    <p><strong>Username</strong></p>
@@ -74,7 +75,7 @@
   <%= submit_tag "Add" %>
   <% end %>
 </p>
-
+<%end%>
 
 <% if user_signed_in? && is_club_current_admin?(@club.id) %>
 <%= link_to '<button>Edit</button>'.html_safe, edit_club_path(@club) %>

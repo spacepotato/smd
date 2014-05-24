@@ -77,23 +77,12 @@ class ClubsController < ApplicationController
       end
     end
 
-<<<<<<< HEAD
-    respond_to do |format|
-      #If we are trying to send a message to a user that doesn't exist we want to let the User know that this is just not on
-        if @new_admin.save
-          flash[:success] = "Your admin has been created"
-          format.html { redirect_to :back}
-          format.json { render :show, status: :created, location: @new_admin}
-        else
-          format.html { render :new }
-          format.json { render json: @message.errors, status: :unprocessable_entity }
-        end
-=======
+
   def user_exist?(username)
     User.all.each do |temp_user|
       if temp_user.username == username
         return true
->>>>>>> FETCH_HEAD
+
       end
     end
     return false
