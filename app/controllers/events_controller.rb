@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
+
     if user_signed_in?
       @is_club_admin = is_club_admin?
     else
@@ -84,10 +85,18 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+    club_id = get_club_id(@event.id)
+
+    if is_club_current_admin?(club_id)
+
+      @event.destroy
+      respond_to do |format|
+        format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:error] = "You cannot delete an event unless you are the club admin"
+      redirect_to :back
     end
   end
 
@@ -101,7 +110,7 @@ class EventsController < ApplicationController
   end
 
   def get_club_id(event)
-    ClubEvent.all.each do |temp_event|
+    ClubEvents.all.each do |temp_event|
       if temp_event.event_id == event.id
         return temp_event.club_id
       end
@@ -178,7 +187,7 @@ class EventsController < ApplicationController
     redirect_to :back
   end
 
-      private
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
