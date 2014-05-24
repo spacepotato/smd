@@ -159,7 +159,7 @@ class EventsController < ApplicationController
       temp_ticket.save
     end
 
-    event.num_of_tickets = event.num_of_tickets - @quantity
+    @event.num_of_tickets = @event.num_of_tickets - @quantity
     flash[:success] = "Tickets reserved successfully"
     redirect_to :back
   end
@@ -172,6 +172,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :location, :event_date, :start_time, :description, :ticket_info, :num_of_tickets, :ticket_price, :banner, :image, :image2, :image3, :parent_club)
+      params.require(:event).permit(:name, :location, :event_date, :start_time, :description, :ticket_info, :num_of_tickets, :ticket_price, :banner, :image, :image2, :image3, :parent_club, :quantity)
     end
   end
