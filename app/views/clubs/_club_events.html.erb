@@ -1,8 +1,8 @@
 <div class="panel panel-default">
-	<strong><%= club_events.name %> </strong>
+	<strong><%= link_to club_events.name, club_events %> </strong>
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	<% if user_signed_in? && is_club_current_admin?(@club.id)%>
 	<td><%= link_to 'Edit', edit_event_path(club_events) %></td>
-	<td><%= link_to 'Remove', :remove_admin , method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	<% end %>
 	<br />
 </div>
