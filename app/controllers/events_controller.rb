@@ -152,7 +152,7 @@ class EventsController < ApplicationController
     @quantity = params[:quantity].to_i
     @event = Event.find(params[:id])
 
-    (1..@quantity.each) do |x| 
+    for x in (1..@quantity) 
       temp_ticket = Ticket.new
       temp_ticket.event_id = @event.id
       temp_ticket.user_id = current_user.id
