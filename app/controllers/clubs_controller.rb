@@ -59,11 +59,17 @@ class ClubsController < ApplicationController
   end
 
   def remove_admin
-    @club_admin = ClubAdmin.where(:user_id=>params[:user_id].to_i , :club_id => params[:club_id].to_i).first
-    
-    flash[:success] = "Success: impeached admin #{@club_admin.position}"
-    @club_admin.destroy
-    redirect_to :back
+    if ClubAdmin.where(:club_id => params[:club_id].to_i).length <= 1
+      flash[:error] = "error: cannot remove last admin"
+      redirect_to :back
+      return
+    else
+      @club_admin = ClubAdmin.where(:user_id=>params[:user_id].to_i , :club_id => params[:club_id].to_i).first
+      
+      flash[:success] = "Success: impeached admin #{@club_admin.position}"
+      @club_admin.destroy
+      redirect_to :back
+    end
     # respond_to do |params|
     #   ClubAdmin.all.each do |temp_admin|
     #     if (temp_admin.user.id == club_admin.user_id => params[:user_id] )
