@@ -1,9 +1,9 @@
 
 <% if @event.banner? %>
-  <div class="banner">
+<div class="banner">
   <%= image_tag @event.banner.url(:banner) %>
-  </div>
-  <% end %>
+</div>
+<% end %>
 
 <br >
 
@@ -35,7 +35,7 @@
 
 <p>
   <strong>Parent Club:</strong>
-  <%= @event.parent_club %>
+  <%= link_to @event.parent_club, Club.where(:name => @event.parent_club).first %>
 </p>
 
 
