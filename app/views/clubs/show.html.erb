@@ -53,18 +53,24 @@
    <br>
    <br>
 
-<h4><strong>Club Administrators</strong> </h2>
+<h4><strong>Club Administrators</strong> </h4>
   <%= render :partial => 'club_admins', :collection => @club_admin %>
    <br>
 
 
    <br>
-
-   <p>
+ <h4><strong>Add New Club Administrators</strong> </h4>
   <%= form_tag add_admin_path do %>
+   <p><strong>Username</strong></p>
   <%= text_field_tag :username, params[:username] %>
+  <br>
+  <p><strong>Position</strong></p>
   <%= text_field_tag :position, params[:position] %>
+  <br>
+  <p><strong>Phone</strong></p>
   <%= text_field_tag :phone, params[:phone] %>
+  <br>
+  <br>
   <%= submit_tag "Add" %>
   <% end %>
 </p>
