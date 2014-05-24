@@ -177,7 +177,7 @@ class EventsController < ApplicationController
       temp_ticket.save
     end
 
-    if @quantity < @event.num_of_tickets
+    if @quantity <= @event.num_of_tickets
       @event.num_of_tickets = @event.num_of_tickets - @quantity
       flash[:success] = "Tickets reserved successfully"
       @event.save
