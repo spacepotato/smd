@@ -158,8 +158,13 @@ class EventsController < ApplicationController
       temp_ticket.save
     end
 
-    @event.num_of_tickets = @event.num_of_tickets - @quantity
-    flash[:success] = "Tickets reserved successfully"
+    if @quantity < @event.num_of_tickets
+      @event.num_of_tickets = @event.num_of_tickets - @quantity
+      flash[:success] = "Tickets reserved successfully"
+      @event.save
+    else
+      flash[:error] = "Not Enought Tickets for Requested Reservation"
+    end
     redirect_to :back
   end
 
