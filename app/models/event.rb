@@ -32,14 +32,17 @@ has_attached_file :image3, :styles => {
       :small  => "150x150#",
       :medium => "300x300#" }
 
-validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :image2, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :image3, :content_type => /\Aimage\/.*\Z/
 
   def self.search_name(search)
   	if search
   		events = Array.new
 
   		Event.all.each do |temp_event|
-  			if temp_event.name.include? search || temp_event.name == search
+  			if temp_event.name.include? search
   				events.push(temp_event)
   			end
   		end
