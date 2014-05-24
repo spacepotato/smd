@@ -53,10 +53,31 @@ class ClubsController < ApplicationController
     @username = params[:username]
     @new_admin = ClubAdmin.new
     @new_admin.club_id = params[:id].to_i
-    @new_admin.user_id = User.find_by(username: @username).id
-    @new_admin.position = params[:position]
-    @new_admin.phone = params[:phone]
+    
+    if !user_exist?(@username)
+      flash[:error] = "User does not exist"
+      redirect_to club_path
+      return
+    else
+        @new_admin.user_id = User.find_by(username: @username).id
+        @new_admin.position = params[:position]
+        @new_admin.phone = params[:phone]
 
+        respond_to do |format|
+          #If we are trying to send a message to a user that doesn't exist we want to let the User know that this is just not on
+            if @new_admin.save
+              flash[:success] = "Your admin has been created"
+              format.html { redirect_to :back}
+              format.json { render :show, status: :created, location: @message}
+            else
+              format.html { render :new }
+              format.json { render json: @message.errors, status: :unprocessable_entity }
+            end
+          end
+      end
+    end
+
+<<<<<<< HEAD
     respond_to do |format|
       #If we are trying to send a message to a user that doesn't exist we want to let the User know that this is just not on
         if @new_admin.save
@@ -67,8 +88,16 @@ class ClubsController < ApplicationController
           format.html { render :new }
           format.json { render json: @message.errors, status: :unprocessable_entity }
         end
+=======
+  def user_exist?(username)
+    User.all.each do |temp_user|
+      if temp_user.username == username
+        return true
+>>>>>>> FETCH_HEAD
       end
     end
+    return false
+  end
 
   def remove_admin
 
