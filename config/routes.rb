@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   resources :clubs
 
   resources :comments
-  delete 'clubs/:id/:name' =>'clubs#remove_admin' ,:as=>:remove_admin
+  
+  post 'clubs/:club_id/:user_id/destroy' =>'clubs#remove_admin' , :as=>:remove_admin
+
   get 'home/show' =>'home#show',:as=>:show
 
   devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }

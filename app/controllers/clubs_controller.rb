@@ -51,19 +51,28 @@ class ClubsController < ApplicationController
     end
   end
 
-  def add_admin(club, admin)
+  def add_admin
     @temp_admin = ClubAdmin.new
-    @temp_admin.user = admin
-    @temp_admin.club = club
+    @temp_admin.user = params[:user_id]
+    @temp_admin.club = params[:club_id]
     @temp_admin.save
   end
 
-  def remove_admin(club, admin)
-    ClubAdmin.all.each do |temp_admin|
-      if temp_admin.user_id == admin && temp_admin.club_id == club 
-        temp_admin.destroy
-      end
-    end
+  def remove_admin
+    @club_admin = ClubAdmin.where(:user_id=>params[:user_id].to_i , :club_id => params[:club_id].to_i).first
+    
+    flash[:success] = "Success: impeached admin #{@club_admin.position}"
+    @club_admin.destroy
+    redirect_to :back
+    # respond_to do |params|
+    #   ClubAdmin.all.each do |temp_admin|
+    #     if (temp_admin.user.id == club_admin.user_id => params[:user_id] )
+    #       if (temp_admin.club.id == params[:club_id]) 
+    #         temp_admin.destroy
+    #       end
+    #     end
+    #   end
+    # end
   end
   
   # POST /clubs
