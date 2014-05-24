@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     
     EventFollows.all.each do |temp_follow|
       if temp_follow.event_id == params[:id].to_i
-        @followers.push(User.find(params[:id]))
+        @followers.push(temp_follow.user)
       end
     end
   end

@@ -62,7 +62,7 @@ class ClubsController < ApplicationController
         if @new_admin.save
           flash[:success] = "Your admin has been created"
           format.html { redirect_to :back}
-          format.json { render :show, status: :created, location: @message}
+          format.json { render :show, status: :created, location: @new_admin}
         else
           format.html { render :new }
           format.json { render json: @message.errors, status: :unprocessable_entity }
