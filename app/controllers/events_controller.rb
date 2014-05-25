@@ -24,7 +24,11 @@ class EventsController < ApplicationController
     EventFollows.where(:event_id => @event.id).all.each do |temp_follow|
       @followers.push(User.find(temp_follow.user_id))
     end
-    @is_event_admin = is_event_admin?(@event)
+    if user_signed_in?
+      @is_event_admin = is_event_admin?(@event)
+    else
+      @is_event_admin = false
+    end
   end
 
   # GET /events/new
@@ -33,7 +37,7 @@ class EventsController < ApplicationController
     @belonging_clubs = Array.new
 
     ClubAdmin.where(:user_id => current_user.id).all.each do |temp_admin|
-        @belonging_clubs.push(Club.find(temp_admin.club_id))
+      @belonging_clubs.push(Club.find(temp_admin.club_id))
     end
 
   end
