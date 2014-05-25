@@ -45,6 +45,9 @@ class SearchController < ApplicationController
 		@clubs = search_clubs(params[:search])
 		@events = search_events(params[:search])
 
+		@clubs = @clubs.uniq
+		@events = @events.uniq
+
 		if @clubs.blank? && @events.blank?
 			flash[:error] = "No results were found for search term #{params[:search]}"
 			redirect_to :back

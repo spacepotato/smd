@@ -85,7 +85,7 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
 
-    if is_event_admin(@event)
+    if is_event_admin?(@event)
 
       @event.destroy
       respond_to do |format|
