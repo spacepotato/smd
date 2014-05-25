@@ -124,7 +124,7 @@
    <%= render :partial => 'followers', :collection => @followers %>
    <br>
    <br>
-   <% if @is_club_admin %>
+   <% if @is_event_admin %>
    <%= link_to '<button>Edit</button>'.html_safe, edit_event_path(@event) %> 
    <% end %>
    <% end %> <!-- Ending the comment blocking for unsigned in users -->

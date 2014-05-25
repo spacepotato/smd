@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index] 
-  helper_method :is_club_current_admin?, :follow_event, :is_following?, :unfollow_event, :is_club_admin?
+  helper_method :is_club_current_admin?, :follow_event, :is_following?, :unfollow_event, :is_club_admin?, :is_event_admin?
 
   # GET /events
   # GET /events.json
@@ -21,12 +21,10 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @followers = Array.new
-    
-    EventFollows.all.each do |temp_follow|
-      if temp_follow.event_id == params[:id].to_i
-        @followers.push(temp_follow.user)
-      end
+    EventFollows.where(:event_id => @event.id).all.each do |temp_follow|
+      @followers.push(User.find(temp_follow.user_id))
     end
+    @is_event_admin = is_event_admin?(@event)
   end
 
   # GET /events/new
@@ -84,9 +82,8 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    club_id = get_club_id(@event)
 
-    if is_club_current_admin?(club_id)
+    if is_event_admin(@event)
 
       @event.destroy
       respond_to do |format|
@@ -100,34 +97,44 @@ class EventsController < ApplicationController
   end
 
   def is_club_admin?
-    ClubAdmin.all.each do |temp_entry|
-      if temp_entry.user_id == current_user.id
-        return true
-      end
-    end
+   club = ClubAdmin.where(:user_id => current_user.id)
+   if !club.blank?
+    return true
+  else
     return false
   end
+end
 
-  def get_club_id(event)
-    club_event =  ClubEvents.where(:event_id => event.id).first
+def is_event_admin?(event)
+ club_id = get_club_id(event)
 
-    if !club_event.blank?
-      logger.info "Club id found"
-      return club_event.club_id
-    else
-      logger.info "Club id not found"
-      return 100
-    end
-    
+ if is_club_current_admin?(club_id)
+  return true
+else
+  return false
+end
+end
+
+def get_club_id(event)
+  club_event =  ClubEvents.where(:event_id => event.id).first
+
+  if !club_event.blank?
+    logger.info "Club id found"
+    return club_event.club_id
+  else
+    logger.info "Club id not found"
+    return 100
   end
 
-  def is_club_current_admin?(club_id)
-    if !ClubAdmin.where(:user_id => current_user.id, :club_id => club_id).blank?
-      return true
-    else
-      return false
-    end
+end
+
+def is_club_current_admin?(club_id)
+  if !ClubAdmin.where(:user_id => current_user.id, :club_id => club_id).blank?
+    return true
+  else
+    return false
   end
+end
 
   #Creating an entry in the Event follows table to indicate that the current user is following the current event
   def follow_event
