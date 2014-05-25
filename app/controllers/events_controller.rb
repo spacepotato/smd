@@ -32,10 +32,8 @@ class EventsController < ApplicationController
     @event = Event.new
     @belonging_clubs = Array.new
 
-    ClubAdmin.all.each do |temp_admin|
-      if temp_admin.user_id == current_user.id
+    ClubAdmin.where(:user_id => current_user.id).all.each do |temp_admin|
         @belonging_clubs.push(Club.find(temp_admin.club_id))
-      end
     end
 
   end
