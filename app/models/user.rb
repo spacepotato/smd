@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
   has_many :events, :through => :event_follows
   has_many :tickets
 
+  has_attached_file :image, :styles => {
+      :profile => "200x300#" }
+
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
 end
 
 
