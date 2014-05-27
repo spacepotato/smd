@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index] 
-  helper_method :is_club_current_admin?, :follow_event, :is_following?, :unfollow_event, :is_club_admin?, :is_event_admin?
+  helper_method :is_club_current_admin?, :follow_event, :is_following?, :unfollow_event, :is_club_admin?
 
   # GET /events
   # GET /events.json
@@ -21,13 +21,11 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @followers = Array.new
-    EventFollows.where(:event_id => @event.id).all.each do |temp_follow|
-      @followers.push(User.find(temp_follow.user_id))
-    end
-    if user_signed_in?
-      @is_event_admin = is_event_admin?(@event)
-    else
-      @is_event_admin = false
+    
+    EventFollows.all.each do |temp_follow|
+      if temp_follow.event_id == params[:id].to_i
+        @followers.push(temp_follow.user)
+      end
     end
   end
 
@@ -36,8 +34,10 @@ class EventsController < ApplicationController
     @event = Event.new
     @belonging_clubs = Array.new
 
-    ClubAdmin.where(:user_id => current_user.id).all.each do |temp_admin|
-      @belonging_clubs.push(Club.find(temp_admin.club_id))
+    ClubAdmin.all.each do |temp_admin|
+      if temp_admin.user_id == current_user.id
+        @belonging_clubs.push(Club.find(temp_admin.club_id))
+      end
     end
 
   end
@@ -53,11 +53,12 @@ class EventsController < ApplicationController
     @event.parent_club = Club.find(params[:parent_club]).name
 
 
-    @club_event = ClubEvents.new({:event => @event})
-    @club_event.club_id = params[:parent_club]
+    @club_event = ClubEvents.new
+    @club_event.club_id = @event.parent_club
+    @club_event.event_id = @event.id
 
     respond_to do |format|
-      if @event.save && @club_event.save
+      if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -84,8 +85,9 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    club_id = get_club_id(@event.id)
 
-    if is_event_admin?(@event)
+    if is_club_current_admin?(club_id)
 
       @event.destroy
       respond_to do |format|
@@ -99,44 +101,32 @@ class EventsController < ApplicationController
   end
 
   def is_club_admin?
-   club = ClubAdmin.where(:user_id => current_user.id)
-   if !club.blank?
-    return true
-  else
+    ClubAdmin.all.each do |temp_entry|
+      if temp_entry.user_id == current_user.id
+        return true
+      end
+    end
     return false
   end
-end
 
-def is_event_admin?(event)
- club_id = get_club_id(event)
-
- if is_club_current_admin?(club_id)
-  return true
-else
-  return false
-end
-end
-
-def get_club_id(event)
-  club_event =  ClubEvents.where(:event_id => event.id).first
-
-  if !club_event.blank?
-    logger.info "Club id found"
-    return club_event.club_id
-  else
-    logger.info "Club id not found"
-    return 100
+  def get_club_id(event)
+    ClubEvents.all.each do |temp_event|
+      if temp_event.event_id == event.id
+        return temp_event.club_id
+      end
+    end
+    return 
   end
 
-end
-
-def is_club_current_admin?(club_id)
-  if !ClubAdmin.where(:user_id => current_user.id, :club_id => club_id).blank?
-    return true
-  else
+  #TO BE IMPLEMENTED ONCE WE HAVE A JOIN BETWEEN CLUBS AND EVENTS
+  def is_club_current_admin?(club_id)
+    ClubAdmin.all.each do |temp_entry|
+      if temp_entry.user_id == current_user.id && temp_entry.club_id == club_id
+        return true
+      end
+    end
     return false
   end
-end
 
   #Creating an entry in the Event follows table to indicate that the current user is following the current event
   def follow_event

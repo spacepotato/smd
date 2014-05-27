@@ -132,12 +132,13 @@ class ClubsController < ApplicationController
     # @club_admin.club_id = @club.id
     # @club_admin.user_id = current_user.id
     # @club_admin.position = "El Presidente"
+    @club_admin.save
 
     notify_admins(@club.name)
 
 
     respond_to do |format|
-      if @club.save && @club_admin.save
+      if @club.save
         format.html { redirect_to @club, notice: 'Club was successfully created.' }
         format.json { render :show, status: :created, location: @club }
       else
