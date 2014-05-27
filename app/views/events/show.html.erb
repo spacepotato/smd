@@ -24,110 +24,119 @@
 <% end %>
 <% end %>
 
-
-<br>
-<br>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-
-<p>
-  <strong>Parent Club:</strong>
-  <%= link_to @event.parent_club, Club.where(:name => @event.parent_club).first %>
-</p>
+<div style ="padding: 0 15px;">
+  <div class = "row">
+    <div class  = "col-md-6">
 
 
-<p>
-  <strong>Event date:</strong>
-  <%= @event.event_date %>
-</p>
+      <br>
+      <br>
 
-<p>
-  <strong>Start time:</strong>
-  <%= "#{@event.start_time.hour}:#{@event.start_time.min}" %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-<p>
-  <strong>Ticket information:</strong>
-  <%= @event.ticket_info %>
-</p>
-<p>
-  <strong>Tickets available:</strong>
-  <%= @event.num_of_tickets %>
-</p>
+      <p>
+        <strong>Location:</strong>
+        <%= @event.location %>
+      </p>
 
-<p>
-  <%= form_tag reserve_ticket_path do %>
-  <%= text_field_tag :quantity, params[:quantity] %>
-  <%= submit_tag "Reserve" %>
-  <% end %>
-</p>
-<p>
-  <strong>Ticket price:</strong>
-  <%= @event.ticket_price %>
-</p>
-<div class="home">
-  <% if @event.image? %>
-  <%= link_to_image(@event.image.url(:medium), @event.image.url) %>
-  &nbsp;&nbsp;&nbsp;
-  <% end %>
-
-  <% if @event.image2? %>
-  <%= link_to_image(@event.image2.url(:medium), @event.image2.url) %>
-  &nbsp;&nbsp;&nbsp;
-  <% end %>
-
-  <% if @event.image3? %>
-  <%= link_to_image(@event.image3.url(:medium), @event.image3.url) %>
-  &nbsp;&nbsp;&nbsp;
-  <% end %>
-</div>
-
-<br>
-<br>
-<% if user_signed_in? %>
-<h4><strong> Comments</strong> </h2>
- <%= render :partial => 'comment', :collection => @event.comments %>
- <br>
- <br>
-
- <%= form_for(@comment, :html => { :multipart => true, :class => "custom"}) do |f| %>
-
- <%= f.hidden_field :event_id, :value => @event.id %>
- <%= f.hidden_field :username, :value => current_user.username %>
- <%= f.hidden_field :is_announcement, :value => is_club_admin? ? true:false %>
- 
- <%= f.label :body %>
- <%= f.text_area :body %>
- <br>
- <br>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- <%= f.submit "Post Comment", :class =>"comment" %>
- 
- <% end %>
- <br>
-
-<% if @is_club_admin %>
- <h4><strong> Event Report</strong> </h4>
- <p><%= :report%></p>
- <% end %>
-
- <br>
+      <p>
+        <strong>Parent Club:</strong>
+        <%= link_to @event.parent_club, Club.where(:name => @event.parent_club).first %>
+      </p>
 
 
- <h4><strong> Followers</strong> </h2>
-   <%= render :partial => 'followers', :collection => @followers %>
-   <br>
-   <br>
-   <% if @is_club_admin %>
-   <%= link_to '<button>Edit</button>'.html_safe, edit_event_path(@event) %> 
-   <% end %>
-   <% end %> <!-- Ending the comment blocking for unsigned in users -->
-   <%= link_to '<button>Back</button>'.html_safe, events_path %>
-   <br>
-   <br>
+      <p>
+        <strong>Event date:</strong>
+        <%= @event.event_date %>
+      </p>
+
+      <p>
+        <strong>Start time:</strong>
+        <%= "#{@event.start_time.hour}:#{@event.start_time.min}" %>
+      </p>
+      <p>
+        <strong>Description:</strong>
+        <%= @event.description %>
+      </p>
+      <p>
+        <strong>Ticket information:</strong>
+        <%= @event.ticket_info %>
+      </p>
+      <p>
+        <strong>Tickets available:</strong>
+        <%= @event.num_of_tickets %>
+      </p>
+
+      <p>
+        <%= form_tag reserve_ticket_path do %>
+        <%= text_field_tag :quantity, params[:quantity] %>
+        <%= submit_tag "Reserve" %>
+        <% end %>
+      </p>
+      <p>
+        <strong>Ticket price:</strong>
+        <%= @event.ticket_price %>
+      </p>
+
+    </div>
+
+    <div style ="padding: 0 15px;">
+      <div class = "row">
+        <div class  = "col-md-6">
+          <% if user_signed_in? %>
+          <h4><strong> Comments</strong> </h2>
+           <%= render :partial => 'comment', :collection => @event.comments %>
+           <br>
+           <br>
+
+           <%= form_for(@comment, :html => { :multipart => true, :class => "custom"}) do |f| %>
+
+           <%= f.hidden_field :event_id, :value => @event.id %>
+           <%= f.hidden_field :username, :value => current_user.username %>
+           <%= f.hidden_field :is_announcement, :value => is_club_admin? ? true:false %>
+
+           <%= f.label :body %>
+           <%= f.text_area :body %>
+           <br>
+           <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <%= f.submit "Post Comment", :class =>"comment" %>
+
+           <% end %>
+           <br>
+
+           <% if @is_club_admin %>
+           <h4><strong> Event Report</strong> </h4>
+           <p><%= :report%></p>
+           <% end %>
+
+           <br>
+         </div>
+       </div>
+     </div>
+
+     <h4><strong> Followers</strong> </h2>
+       <%= render :partial => 'followers', :collection => @followers %>
+       <br>
+       <br>
+       <% if @is_event_admin %>
+       <%= link_to '<button>Edit</button>'.html_safe, edit_event_path(@event) %> 
+       <% end %>
+       <% end %> <!-- Ending the comment blocking for unsigned in users -->
+       <%= link_to '<button>Back</button>'.html_safe, events_path %>
+       <br>
+       <br>
+       <div class="home">
+        <% if @event.image? %>
+        <%= link_to_image(@event.image.url(:medium), @event.image.url) %>
+        &nbsp;&nbsp;&nbsp;
+        <% end %>
+
+        <% if @event.image2? %>
+        <%= link_to_image(@event.image2.url(:medium), @event.image2.url) %>
+        &nbsp;&nbsp;&nbsp;
+        <% end %>
+
+        <% if @event.image3? %>
+        <%= link_to_image(@event.image3.url(:medium), @event.image3.url) %>
+        &nbsp;&nbsp;&nbsp;
+        <% end %>
+      </div>
